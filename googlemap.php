@@ -1,14 +1,14 @@
 <?php
-/**
- * Plugin Name: Google Map
- * Plugin URI:http://huge-it.ru
- * Description: Google Map
- * Version: 1.0.0
- * Author: Mathew Hayrapetyan
- * Author URI: http://huge-it.com
- * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
- */
 
+/*
+Plugin Name: Huge IT Google Map
+Plugin URI: http://huge-it.com/google-map
+Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
+Version: 2.1.1
+Author: http://huge-it.com/
+Author URI: http://huge-it.com
+License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+*/
  
 add_action('init', 'hugemap_do_output_buffer');
 function hugemap_do_output_buffer() {
