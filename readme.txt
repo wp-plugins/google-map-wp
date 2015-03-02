@@ -1,20 +1,20 @@
 === Google Map ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/google-map/
-Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, google,
+Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, google, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, controls, gpx, jquery tabs, openstreetmap, styling,
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Map, where  we have our special contribution.
+Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Maps, where  we have our special contribution.
 
 == Description ==
 
 ### Wordpress Google Map
 
-Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Map, where  we have our special contribution. Most simple and effective tool for rapid creation of individual Google Maps in posts and pages.
+Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Maps, where  we have our special contribution. Most simple and effective tool for rapid creation of individual Google Maps in posts and pages.
 
 With our Google Map, you can provide your visitors with information about the exact location of your company/place. To make sure that people can find your place, you should add the appropriate information to the markers of Google map. With the help of this plugin give information on the right location of your business, you distribute information about yourself, get free traffic and increases the number of transitions to your page from the usual search on Google.
 On the map you can create marker with has many beautiful styles. besides given styles you also can upload your preferable image and set it instead of marker
@@ -49,10 +49,13 @@ Now you can set your Image Gallery options, images and use our Google Map.
 
 == Changelog ==
 
-= 2.1.1 =
-*  Added Google Map.
+= 2.1.2 =
+*  Front end bug fixed Google Maps.
 
-==Step 1. Adding a Google Map==
+= 2.1.1 =
+*  Added Google Maps.
+
+==Step 1. Adding a Google Maps==
 
 **Step 1 Add Google Maps in post/page**
 
