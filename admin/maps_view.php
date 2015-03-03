@@ -574,7 +574,7 @@ function edit_map()
 											<ul>
 												<li class="has_background" >
 													<label for="marker_location">Address</label>
-													<input type="text" id="marker_location" name="marker_location" placeholder="Los Angeles" />
+													<input type="text" id="marker_location" name="marker_location" />
 												</li>
 												<li >
 													<label for="marker_location_lat">Latitude</label> 
@@ -1103,7 +1103,7 @@ function edit_map()
 								<div class="edit_content hide">
 									<div id="g_map_polygone_options">
 										<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
-											<a id="polygon_add_button" class="add_button clear" href="#">+Add New Polygone</a>
+											<a id="polygon_add_button" class="add_button clear" href="#">+Add New Polygon</a>
 											<div class="hidden_edit_content hide">
 												<a href="#" id="back_polygone" class="cancel left">◄ Back</a>
 												<ul>

@@ -101,7 +101,7 @@
 								if(response.success)
 								{
 									var xml = jQuery.parseXML(response.success);
-									console.log(xml);
+									//console.log(xml);
 									var maps = xml.documentElement.getElementsByTagName("map");
 									for(var i = 0; i < maps.length; i++)
 									{
@@ -140,6 +140,27 @@
 										}
 										
 										map_admin_view = new google.maps.Map(document.getElementById('g_map_canvas'), mapOptions);
+										
+										
+										var input = document.getElementById("map_center_addr");
+										var autocomplete = new google.maps.places.Autocomplete(input);
+										google.maps.event.addListener(autocomplete, 'place_changed', function(){
+											
+											var addr = jQuery("#map_center_addr").val();
+											var geocoder = geocoder = new google.maps.Geocoder();
+											//alert(addr);
+											geocoder.geocode({'address':addr},function(results, status){
+												if (status == google.maps.GeocoderStatus.OK) {
+													address = results[0].geometry.location;
+													map_admin_view.setCenter(address);
+													jQuery("#map_center_lat").val(address.lat());
+													jQuery("#map_center_lng").val(address.lng());
+												}
+											 })
+										})
+										
+										
+										
 										
 										if(pan_controller == "true")
 										{
@@ -289,18 +310,7 @@
 											}
 										})
 										
-										jQuery("#map_center_addr").on("change",function(){
-											var addr = jQuery(this).val();
-											var geocoder = geocoder = new google.maps.Geocoder();
-											geocoder.geocode({'address':addr},function(results, status){
-												if (status == google.maps.GeocoderStatus.OK) {
-													address = results[0].geometry.location;
-													map_admin_view.setCenter(address);
-													jQuery("#map_center_lat").val(address.lat());
-													jQuery("#map_center_lng").val(address.lng());
-												}
-											 })
-										})
+										
 										var markers = xml.documentElement.getElementsByTagName("marker");
 										for(j = 0; j < markers.length; j++)
 										{

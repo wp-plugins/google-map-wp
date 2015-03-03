@@ -38,7 +38,33 @@ function circle_js($id)
 									placeCircle(event.latLng);
 									updateCircleInputs(event.latLng);
 								});
-								jQuery("#circle_center_addr").on("keyup change",function(){
+								
+								
+
+								var input_circle = document.getElementById("circle_center_addr");
+								var autocomplete_circle = new google.maps.places.Autocomplete(input_circle);
+								google.maps.event.addListener(autocomplete_circle, 'place_changed', function(){
+									
+									var addr = jQuery("#circle_center_addr").val();
+									geocoder = new google.maps.Geocoder();
+									geocoder.geocode({ 'address': addr}, function (results, status) {
+										if(newcircle)
+										{
+											newcircle.setCenter(results[0].geometry.location);
+											circlemarker.setPosition(results[0].geometry.location);
+										}
+										else
+										{
+											placeCircle(results[0].geometry.location)
+										}
+										mapcircle.setCenter(results[0].geometry.location);
+										updateCircleInputs(results[0].geometry.location);
+									})
+								})
+								
+								
+								
+								/*jQuery("#circle_center_addr").on("keyup change",function(){
 									geocoder = new google.maps.Geocoder();
 									geocoder.geocode({ 'address': jQuery(this).val()}, function (results, status) {
 										if(newcircle)
@@ -53,7 +79,7 @@ function circle_js($id)
 										mapcircle.setCenter(results[0].geometry.location);
 										updateCircleInputs(results[0].geometry.location);
 									})
-								})
+								})*/
 								
 								
 								
@@ -168,8 +194,25 @@ function circle_js($id)
 													fillOpacity:fill_opacity
 												})
 											})
-
-											jQuery("#circle_edit_center_addr").on("change",function(){
+											var input_edit_circle = document.getElementById("circle_edit_center_addr");
+											var autocomplete_edit_circle = new google.maps.places.Autocomplete(input_edit_circle);
+											google.maps.event.addListener(autocomplete_edit_circle, 'place_changed', function(){
+												
+												var addr = jQuery("#circle_edit_center_addr").val();
+												geocoder = new google.maps.Geocoder();
+												geocoder.geocode({ 'address': addr}, function (results, status) {
+													if(editcircle)
+													{
+														editcircle.setCenter(results[0].geometry.location);
+														circlemarkeredit.setPosition(results[0].geometry.location);
+													}
+													map_circle_edit.setCenter(results[0].geometry.location);
+													updateCircleEditInputs(results[0].geometry.location);
+												})
+											})
+											
+											
+											/*jQuery("#circle_edit_center_addr").on("change",function(){
 												geocoder = new google.maps.Geocoder();
 												geocoder.geocode({ 'address': jQuery(this).val()}, function (results, status) {
 													if(editcircle)
@@ -180,7 +223,8 @@ function circle_js($id)
 													map_circle_edit.setCenter(results[0].geometry.location);
 													updateCircleEditInputs(results[0].geometry.location);
 												})
-											})
+											})*/
+											
 											
 											updateCircleEditInputs(circlemarkeredit.getPosition());
 											google.maps.event.addListener(map_circle_edit, "rightclick", function(event){

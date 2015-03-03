@@ -38,6 +38,28 @@
 								}
 								map = new google.maps.Map(document.getElementById('g_map_marker'), mapOptions);
 								map_marker_edit = new google.maps.Map(document.getElementById('g_map_marker_edit'), mapOptions);
+								
+								
+								var input_marker = document.getElementById("marker_location");
+								var autocomplete_marker = new google.maps.places.Autocomplete(input_marker);
+								google.maps.event.addListener(autocomplete_marker, 'place_changed', function(){
+									
+									var addr = jQuery("#marker_location").val();
+									geocoder = new google.maps.Geocoder();
+									geocoder.geocode({ 'address': addr}, function (results, status) {
+										if(newmarker)
+										{
+											newmarker.setPosition(results[0].geometry.location)
+										}
+										else
+										{
+											placeMarker(results[0].geometry.location)
+										}
+										map.setCenter(results[0].geometry.location);
+										updateMarkerInputs(results[0].geometry.location);
+									})
+								})
+								
 								google.maps.event.addListener(map, 'rightclick', function(event){
 									placeMarker(event.latLng);
 									updateMarkerInputs(event.latLng);
@@ -65,14 +87,14 @@
 
 
 								
-								jQuery("#marker_location_lat #marker_location_lng").on("change",function(){
+								jQuery("#marker_location_lat, #marker_location_lng").on("change",function(){
 									var lat = parseFloat(jQuery("#marker_location_lat").val());
 									var lng = parseFloat(jQuery("#marker_location_lng").val());
 										var position = new google.maps.LatLng(lat,lng);
 										placeMarker(position);
 									
 								})
-								jQuery("#marker_location").on("change",function(){
+								/*jQuery("#marker_location").on("change",function(){
 									geocoder = new google.maps.Geocoder();
 									geocoder.geocode({ 'address': jQuery(this).val()}, function (results, status) {
 										if(newmarker)
@@ -86,7 +108,7 @@
 										map.setCenter(results[0].geometry.location);
 										updateMarkerInputs(results[0].geometry.location);
 									})
-								})
+								})*/
 								var markers = xml.documentElement.getElementsByTagName("marker");
 
 								jQuery(".edit_marker_list_delete a").on("click",function(){
@@ -208,9 +230,23 @@
 												
 												updateMarkerEditInputs(event.latLng);
 											});
+											var input_edit_marker = document.getElementById("marker_edit_location");
+											var autocomplete_edit_marker = new google.maps.places.Autocomplete(input_edit_marker);
+											google.maps.event.addListener(autocomplete_edit_marker, 'place_changed', function(){
+												
+												var addr = jQuery("#marker_edit_location").val();
+												geocoder = new google.maps.Geocoder();
+												geocoder.geocode({ 'address': addr}, function (results, status) {
+													if(markeredit)
+													{
+														markeredit.setPosition(results[0].geometry.location)
+													}
+													map_marker_edit.setCenter(results[0].geometry.location);
+													updateMarkerEditInputs(results[0].geometry.location);
+												})
+											})
 											
-											
-											jQuery("#marker_edit_location").on("change",function(){
+											/*jQuery("#marker_edit_location").on("change",function(){
 												geocoder = new google.maps.Geocoder();
 												geocoder.geocode({ 'address': jQuery(this).val()}, function (results, status) {
 													if(markeredit)
@@ -220,7 +256,7 @@
 													map_marker_edit.setCenter(results[0].geometry.location);
 													updateMarkerEditInputs(results[0].geometry.location);
 												})
-											})
+											})*/
 											
 											updateMarkerEditInputs(markeredit.getPosition());
 										}

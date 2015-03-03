@@ -1,6 +1,11 @@
 jQuery(document).ready(function(){
 	
-	
+		var updated_div = jQuery(".updated");
+		if(updated_div != undefined){
+			setInterval(function(){
+				jQuery(".updated").hide(500);
+			},10000)
+		}
 	
 		jQuery(".editing_heading").on('click',function(){
 			//jQuery(this).find(".heading_arrow").html() == "after" ? jQuery(this).find(".heading_arrow").html('▼') : jQuery(this).find(".heading_arrow").html('▲');

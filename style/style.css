@@ -247,6 +247,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	border:1px solid #dfdfdf;
 	font-size:13px;
 	cursor:pointer;
+	padding-left:2px;
 	font-weight:600
 }
 
@@ -281,6 +282,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	border-left: 1px solid #dfdfdf;
 	border-right: 1px solid #dfdfdf;
 	border-bottom: 1px solid #dfdfdf;
+	padding-left:2px;
 
 }
 
