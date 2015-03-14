@@ -1,6 +1,7 @@
 <?php
 	function showpublishedmap($id)
 	{
+		 ob_start();
 		global $wpdb;
 		$sql= "SELECT * FROM ".$wpdb->prefix."g_maps WHERE id='".$id."'";
 		$getMapContent = $wpdb->get_results($sql);
@@ -56,6 +57,12 @@
 							var circlepoint;
 							var width = jQuery("#huge_it_google_map<?php echo $map->id; ?>").width();
 							var height = jQuery("#huge_it_google_map<?php echo $map->id; ?>").height();
+							function bindInfoWindow(marker, map, infowindow, description, info_type){
+								google.maps.event.addListener(marker, 'click', function() {
+									infowindow.setContent(description);
+									infowindow.open(map, marker);
+								});
+							}
 							var div = parseInt(width)/parseInt(height);
 							jQuery(window).on("resize",function(){
 								var newwidth = jQuery("#huge_it_google_map<?php echo $map->id; ?>").width();
@@ -80,79 +87,6 @@
 								mapTypeId : google.maps.MapTypeId.<?php echo $map->type; ?>,
 							}
 							var front_end_map = new google.maps.Map(document.getElementById('huge_it_google_map<?php echo $map->id; ?>'),frontEndMapOptions)
-							
-							/*if(pan_controller == "true")
-									{
-										front_end_map.setOptions({
-											panControl: true,
-										})
-									}
-									else
-									{
-										front_end_map.setOptions({
-											panControl: false,
-										})
-									}
-									if(zoom_controller == "true")
-									{
-										front_end_map.setOptions({
-											zoomControl: true,
-										})
-									}
-									else
-									{
-										front_end_map.setOptions({
-											zoomControl: false,
-										})
-									}
-									if(type_controller == "true")
-									{
-										front_end_map.setOptions({
-											mapTypeControl: true,
-										})
-									}
-									else
-									{
-										front_end_map.setOptions({
-											mapTypeControl: false,
-										})
-									}
-									if(scale_controller == "true")
-									{
-										front_end_map.setOptions({
-											scaleControl: true,
-										})
-									}
-									else
-									{
-										front_end_map.setOptions({
-											scaleControl: false,
-										})
-									}
-									if(street_view_controller == "true")
-									{
-										front_end_map.setOptions({
-											streetViewControl: true,
-										})
-									}
-									else
-									{
-										front_end_map.setOptions({
-											streetViewControl: false,
-										})
-									}
-									if(overview_map_controller == "true")
-									{
-										front_end_map.setOptions({
-											overviewMapControl: true,
-										})
-									}
-									else
-									{
-										front_end_map.setOptions({
-											overviewMapControl: false,
-										})
-									}*/
 							
 							var front_end_data= {
 								action: 'g_map_options',
@@ -298,13 +232,7 @@
 											})
 										}
 									}
-									function bindInfoWindow(marker, map, infowindow, description, info_type){
-
-											google.maps.event.addListener(marker, 'click', function() {
-												infowindow.setContent(description);
-												infowindow.open(map, marker);
-											});
-									}
+									
 								}
 							},"json")
 						})
@@ -312,5 +240,6 @@
 				<?php ;
 			}
 		}
+		return ob_get_clean();
 	}
 ?>

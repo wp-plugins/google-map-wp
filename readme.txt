@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/google-map/
 Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, google, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, controls, gpx, jquery tabs, openstreetmap, styling,
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ Now you can set your Image Gallery options, images and use our Google Map.
 == Screenshots ==
 
 == Changelog ==
+
+= 2.1.4 =
+*  Admin panel bugs fixed. Front end bugs fixed. Mozilla Firefox Front end bug fixed.
 
 = 2.1.3 =
 *  Add google search box.
