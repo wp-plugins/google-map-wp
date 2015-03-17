@@ -47,6 +47,13 @@ Now you can set your Image Gallery options, images and use our Google Map.
 
 == Screenshots ==
 
+1.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+2.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+3.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+4.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+5.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+6.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+
 == Changelog ==
 
 = 2.1.4 =
