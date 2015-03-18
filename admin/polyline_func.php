@@ -14,13 +14,19 @@ function polyline_js($id)
 			var polylinemarker= [];
 			var i  = 0;
 			var newpolyline;
+			var polylineedit;
 			var newpolylinecoords = [];
 			var polylineeditmarker= [];
 			var polylineeditcoords = [];
 			jQuery(document).ready(function(){
+				loadPolylineMap("<?php echo $map->id; ?>","#<?php echo $map->styling_hue; ?>","<?php echo $map->styling_saturation; ?>","<?php echo $map->styling_lightness; ?>","<?php echo $map->styling_gamma; ?>","<?php echo $map->zoom; ?>","<?php echo $map->type; ?>","<?php echo $map->bike_layer; ?>","<?php echo $map->traffic_layer; ?>","<?php echo $map->transit_layer; ?>");
+				
+			})
+			function loadPolylineMap(id,hue,saturation,lightness,gamma,zoom,type,bike,traffic,transit){
 				data = {
 					action:'g_map_options',
-					map_id:<?php echo $map->id; ?>,
+					map_id:id,
+					task:"getxml",
 				}
 				jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>", data, function(response){
 					if(response.success)
@@ -33,12 +39,26 @@ function polyline_js($id)
 								parseFloat(maps[i].getAttribute("center_lat")),
 								parseFloat(maps[i].getAttribute("center_lng")));
 							var mapOptions = {
-								zoom: <?php echo $map->zoom; ?>,
+								zoom:parseInt(zoom),
 								center: mapcenter,
-								mapTypeId: google.maps.MapTypeId.<?php echo $map->type; ?>,
 							}
 							mappolyline = new google.maps.Map(document.getElementById('g_map_polyline'), mapOptions);
 							map_polyline_edit = new google.maps.Map(document.getElementById('g_map_polyline_edit'),mapOptions);
+							
+							jQuery("#polyline_add_button").on("click",function(){
+								google.maps.event.trigger(mappolyline, 'resize');
+								mappolyline.setCenter(mapcenter);
+								if(newpolyline){
+									newpolyline.setMap(null);
+									
+									newpolylinecoords = [];
+									for(var i = 0; i < polylinemarker.length ; i++)
+									{
+										polylinemarker[i].setMap(null);
+									}
+									polylinemarker = [];
+								}
+							})
 							google.maps.event.addListener(mappolyline, 'rightclick', function(event){
 								placePolyline(event.latLng);
 								updatePolylineInputs(event.latLng);
@@ -60,16 +80,26 @@ function polyline_js($id)
 							
 							
 							jQuery(".edit_polyline_list_delete a").on("click",function(){
+								if(polylineedit)
+								{
+									polylineedit.setMap(null);
+									for(var i = 0; i < polylineeditmarker.length ; i++)
+									{
+										polylineeditmarker[i].setMap(null);
+									}
+									polylineeditmarker = [];
+									polylineeditcoords = [];
+								}
 								var parent = jQuery(this).parent();
 								var idelement = parent.find(".polyline_edit_id");
 								var polylineid = idelement.val();
 								jQuery("#g_maps > div").addClass("hide");
 								jQuery("#g_map_polyline_edit").removeClass("hide");
-								jQuery("#polyline_edit_exist_section").hide(200);
-								jQuery(this).parent().parent().parent().parent().parent().find(".update_list_item").show(200);
-								jQuery("#polyline_add_button").hide(200);
+								jQuery("#polyline_edit_exist_section").hide(200).addClass("tab_options_hidden_section");
+								jQuery(this).parent().parent().parent().parent().parent().find(".update_list_item").show(200).addClass("tab_options_active_section");
+								jQuery("#polyline_add_button").hide(200).addClass("tab_options_hidden_section");
 								google.maps.event.trigger(map_polyline_edit, 'resize');
-								map_polyline_edit.setCenter(mapcenter);
+								
 								jQuery("#polyline_get_id").val(polylineid);
 								var polylines = xml.documentElement.getElementsByTagName("polyline");
 								for(var e = 0; e < polylines.length; e++)
@@ -81,12 +111,8 @@ function polyline_js($id)
 										var line_opacity=polylines[e].getAttribute("line_opacity");
 										var line_color=polylines[e].getAttribute("line_color");
 										var line_width = polylines[e].getAttribute("line_width");
-										var hover_line_color = polylines[e].getAttribute("hover_line_color");
-										var hover_line_opacity = polylines[e].getAttribute("hover_line_opacity");
 										var latlngs = polylines[e].getElementsByTagName("latlng");
 										jQuery("#polyline_edit_name").val(name);
-										jQuery("#hover_polyline_edit_line_opacity").simpleSlider("setValue", hover_line_opacity);
-										jQuery("#hover_polyline_edit_line_color").val(hover_line_color);
 										jQuery("#polyline_edit_line_opacity").simpleSlider("setValue", line_opacity);
 										jQuery("#polyline_edit_line_color").val(line_color);
 										jQuery("#polyline_edit_line_width").simpleSlider("setValue", line_width);
@@ -96,6 +122,9 @@ function polyline_js($id)
 											var lng =latlngs[j].getAttribute("lng");
 											var polylineeditpoint = new google.maps.LatLng(parseFloat(latlngs[j].getAttribute("lat")),
 												parseFloat(latlngs[j].getAttribute("lng")));
+												if(j==0){
+													map_polyline_edit.setCenter(polylineeditpoint);
+												}
 											polylineeditmarker[j] = new google.maps.Marker({
 												position:polylineeditpoint,
 												map:map_polyline_edit,
@@ -129,7 +158,7 @@ function polyline_js($id)
 											})
 											
 										}
-										var polylineedit = new google.maps.Polyline({
+										polylineedit = new google.maps.Polyline({
 											path : polylineeditcoords,
 											map: map_polyline_edit,
 											strokeOpacity: line_opacity,
@@ -146,7 +175,6 @@ function polyline_js($id)
 												strokeOpacity:line_opacity,
 											}); 
 										})
-
 										google.maps.event.addListener(map_polyline_edit, "rightclick",function(event){
 											//alert(event.latLng);
 											var edit_array_index = polylineeditmarker.length;
@@ -195,7 +223,7 @@ function polyline_js($id)
 						}
 					}
 				},"json")
-			})
+			}
 			function updatePolylineInputs(location)
 			{
 				var temp_array = "";
@@ -255,6 +283,7 @@ function polyline_js($id)
 				var polyline_line_width = jQuery('#polyline_line_width').val();
 				if(newpolyline)
 				{
+					newpolyline.setMap(mappolyline);
 					newpolyline.setPath(newpolylinecoords);
 				}
 				else

@@ -27,7 +27,8 @@ function show_map()
 				<tr>
 					<th scope="col" id="id" style="width:30px" ><span>ID</span><span class="sorting-indicator"></span></th>
 					<th scope="col" id="name" style="width:85px" ><span>Name</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="name" style="width:85px" ><span>Action</span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="action" style="width:85px" ><span>Action</span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="shortcode" style="width:85px" ><span>Shortcode</span><span class="sorting-indicator"></span></th>
 					<th style="width:40px">Delete</th>
 				</tr>
 			</thead>
@@ -46,7 +47,8 @@ function show_map()
 						<tr class="<?php if($i == 1){ echo "has_background"; } ?>">
 							<td><?php echo $map->id; ?></td>
 							<td><a href="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $map->id; ?>"><?php echo esc_html(stripslashes($map->name)); ?></a>
-							<td><a href="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $map->id; ?>">Edit</a>
+							<td><a href="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $map->id; ?>">Edit</a></td>
+							<td>[huge_it_maps id="<?php echo $map->id ?>"]</td>
 							<td><a href="admin.php?page=hugeitgooglemaps_main&task=remove_cat&id=<?php echo $map->id; ?>">Delete</a></td>
 						</tr>
 						<?php ; 
@@ -87,6 +89,7 @@ function edit_map()
 	polygone_js($_GET['id']);
 	polyline_js($_GET['id']);
 	circle_js($_GET['id']);
+	ajax_js($_GET['id']);
 	global $wpdb;
 	$sql=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."g_maps WHERE id=%s",$_GET['id']);
 	$getMap = $wpdb->get_results($sql);
@@ -467,7 +470,16 @@ function edit_map()
 						
 						<ul class="admin_edit_section">
 							<li class="editing_section ">
-								<div class="editing_heading">General Options<span class="heading_arrow">▼</span></div>
+								<div class="editing_heading">
+									General Options
+									<div class="help">?
+										<div class="help-block">
+											<span class="pnt"></span>
+											<p>General Options of current map</p>
+										</div>
+									</div>
+									<span class="heading_arrow">▼</span>
+								</div>
 								<div class="edit_content map_options hide">
 									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 										<ul>
@@ -565,7 +577,16 @@ function edit_map()
 								</div>
 							</li>
 							<li class="markers_editor editing_section">
-								<div class="editing_heading">Markers<span class="heading_arrow">▼</span></div>
+								<div class="editing_heading">
+									Markers
+									<div class="help">?
+										<div class="help-block">
+											<span class="pnt"></span>
+											<p>A marker identifies a location on a map. Right-Click on the map to add a Marker. Hold pressed and drag to move it</p>
+										</div>
+									</div>
+									<span class="heading_arrow">▼</span>
+								</div>
 								<div class="edit_content hide" id="g_map_marker_options">
 									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 										<a class="add_button" id="marker_add_button" href="#">+Add New Marker</a>
@@ -800,16 +821,7 @@ function edit_map()
 									</form>
 									
 										
-											
-											<?php
-												$id = $_GET['id'];
-												$i = 1;
-												$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_markers WHERE map=%s",$id);
-												$getMarkerList = $wpdb->get_results($sql);
-												if($getMarkerList)
-												{
-													?>
-													<div id="markers_edit_exist_section">
+										<div id="markers_edit_exist_section">
 														<div class="edit_list_heading">
 															<div class="list_number">
 																ID
@@ -820,17 +832,26 @@ function edit_map()
 															<div class="edit_list_delete">
 																Action
 															</div>
-														</div>
+														</div>	
+											<?php
+												$id = $_GET['id'];
+												$i = 1;
+												$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_markers WHERE map=%s",$id);
+												$getMarkerList = $wpdb->get_results($sql);
+												if($getMarkerList)
+												{
+													?>
+													
 														<ul class="list_exist" id="marker_list_exist">
 													<?php
 														foreach($getMarkerList as $marker)
 														{
 															$j= $i%2;
 															?>
-																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>"  >
+																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>" data-list_id="<?php echo $marker->id; ?>"  >
 																	<div class="list_number">
 																		<?php
-																			echo $marker->id;
+																			echo $i;
 																		?>
 																	</div>
 																	<div class="edit_list_item">
@@ -853,16 +874,16 @@ function edit_map()
 														}
 													?>
 														</ul>
-													</div>
+													
 													<?php
 												}
 												else
 												{
-													echo "<p>You have 0 markers</p>";
+													echo "<p class='empty_marker'>You have 0 markers</p>";
 												}
 											?>
 										
-									
+									</div>
 									<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post" >
 										<input type="hidden" id="marker_get_id" name="marker_get_id" />
 										
@@ -871,7 +892,7 @@ function edit_map()
 											<ul>
 												<li class="has_background" >
 													<label for="marker_edit_location">Address</label>
-													<input type="text" id="marker_edit_location" name="marker_edit_location" placeholder="Armenia,Yerevan" />
+													<input type="text" id="marker_edit_location" name="marker_edit_location" />
 												</li>
 												<li  >
 													<label for="marker_edit_location_lat">Latitude</label> 
@@ -1099,7 +1120,16 @@ function edit_map()
 								</div>
 							</li>
 							<li class="editing_section">
-								<div class="editing_heading">Polygons<span class="heading_arrow">▼</span></div>
+								<div class="editing_heading">
+									Polygons
+									<div class="help">?
+										<div class="help-block">
+											<span class="pnt"></span>
+											<p>Bounded highlighted area on the map, showing the specific range, limited with geometric figure. Right click on the map to add point. Hold pressed and drag to move it. Left click to remove it.</p>
+										</div>
+									</div>
+									<span class="heading_arrow">▼</span>
+								</div>
 								<div class="edit_content hide">
 									<div id="g_map_polygone_options">
 										<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
@@ -1178,17 +1208,7 @@ function edit_map()
 												</div>
 											</div>
 										</form>
-										
-												
-												<?php
-													$id = $_GET['id'];
-													$i = 1;
-													$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_polygones WHERE map=%s",$id);
-													$getPolygoneList = $wpdb->get_results($sql);
-													if($getPolygoneList)
-													{
-														?>
-														<div id="polygone_edit_exist_section">
+										<div id="polygone_edit_exist_section">
 															<div class="edit_list_heading">
 																<div class="list_number">
 																	ID
@@ -1200,16 +1220,26 @@ function edit_map()
 																	Action
 																</div>
 															</div>
+												
+												<?php
+													$id = $_GET['id'];
+													$i = 1;
+													$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_polygones WHERE map=%s",$id);
+													$getPolygoneList = $wpdb->get_results($sql);
+													if($getPolygoneList)
+													{
+														?>
+														
 															<ul class="list_exist" id="polygone_list_exist">
 															<?php
 														foreach($getPolygoneList as $polygone)
 														{
 															$j= $i%2;
 															?>
-																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>"  >
+																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>" data-list_id="<?php echo $polygone->id; ?>"  >
 																	<div class="list_number">
 																		<?php
-																			echo $polygone->id;
+																			echo $i;
 																		?>
 																	</div>
 																	<div class="edit_list_item">
@@ -1231,14 +1261,14 @@ function edit_map()
 														}
 														?>
 															</ul>
-														</div>
+														
 														<?php
 													}
 													else{
-														echo "<p>You have 0 polygones on this map</p>";
+														echo "<p class='empty_polygon'>You have 0 polygones on this map</p>";
 													}
 												?>
-										
+										</div>
 										<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<input type="hidden" id="polygone_get_id" name="polygone_get_id" />
 											<div class="update_list_item hide">
@@ -1319,7 +1349,16 @@ function edit_map()
 								</div>
 							</li>
 							<li class="editing_section">
-								<div class="editing_heading">Polylines<span class="heading_arrow">▼</span></div>
+								<div class="editing_heading">
+									Polylines
+									<div class="help">?
+										<div class="help-block">
+											<span class="pnt"></span>
+											<p>Continuous line composed of one or more line segments, which creates specific track. Right click on the map to add point. Hold pressed and drag to move it. Left click to remove it.</p>
+										</div>
+									</div>
+									<span class="heading_arrow">▼</span>
+								</div>
 								<div class="edit_content hide">
 									<div id="g_map_polyline_options">
 										<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
@@ -1372,17 +1411,7 @@ function edit_map()
 												</div>
 											</div>
 										</form>
-										
-												
-												<?php
-													$id = $_GET['id'];
-													$i = 1;
-													$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_polylines WHERE map=%s",$id);
-													$getPolylineList = $wpdb->get_results($sql);
-													if($getPolylineList)
-													{
-														?>
-														<div id="polyline_edit_exist_section">
+										<div id="polyline_edit_exist_section">
 															<div class="edit_list_heading">
 																<div class="list_number">
 																	ID
@@ -1394,16 +1423,26 @@ function edit_map()
 																	Action
 																</div>
 															</div>
+												
+												<?php
+													$id = $_GET['id'];
+													$i = 1;
+													$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_polylines WHERE map=%s",$id);
+													$getPolylineList = $wpdb->get_results($sql);
+													if($getPolylineList)
+													{
+														?>
+														
 															<ul  class="list_exist" id="polyline_list_exist">
 															<?php
 														foreach($getPolylineList as $polyline)
 														{
 															$j= $i%2;
 															?>
-																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>"  >
+																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>" data-list_id="<?php echo $polyline->id; ?>"  >
 																	<div class="list_number">
 																		<?php
-																			echo $polyline->id;
+																			echo $i;
 																		?>
 																	</div>
 																	<div class="edit_list_item">
@@ -1427,14 +1466,14 @@ function edit_map()
 														}
 															?>
 															</ul>
-														</div>
+														
 														<?php
 													}
 													else{
-														echo "<p>You have 0 polylines on this map</p>";
+														echo "<p class='empty_polyline'>You have 0 polylines on this map</p>";
 													}
 												?>
-											
+										</div>	
 										<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<input type="hidden" id="polyline_get_id" name="polyline_get_id" />
 											<div class="update_list_item hide">
@@ -1489,7 +1528,16 @@ function edit_map()
 								</div>
 							</li>
 							<li class="editing_section">
-								<div class="editing_heading">Circles<span class="heading_arrow">▼</span></div>
+								<div class="editing_heading">
+									Circles
+									<div class="help">?
+										<div class="help-block">
+											<span class="pnt"></span>
+											<p>Round area, showing the specific range. Right click on map wherever you need to place the circle’s center. Hold pressed and drag to move it</p>
+										</div>
+									</div>
+									<span class="heading_arrow">▼</span>
+								</div>
 								<div class="edit_content hide">
 									<div id="g_map_circle_options">
 										<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
@@ -1523,7 +1571,7 @@ function edit_map()
 													</li>
 													<li>
 														<label for="circle_radius">Radius(meter)</label>
-														<input type="text" class="circle_options_input" id="circle_radius" name="circle_radius" value="50000" />
+														<input type="number" class="circle_options_input" id="circle_radius" name="circle_radius" value="50000" />
 													</li>
 													<li class="has_background">
 														<label for="circle_line_width">Line Width</label>
@@ -1583,17 +1631,7 @@ function edit_map()
 												</div>
 											</div>
 										</form>
-										
-												
-												<?php
-													$id = $_GET['id'];
-													$i = 1;
-													$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_circles WHERE map=%s",$id);
-													$getCircleList = $wpdb->get_results($sql);
-													if($getCircleList)
-													{
-														?>
-														<div id="circle_edit_exist_section">
+										<div id="circle_edit_exist_section">
 															<div class="edit_list_heading">
 																<div class="list_number">
 																	ID
@@ -1605,16 +1643,26 @@ function edit_map()
 																	Action
 																</div>
 															</div>
+												
+												<?php
+													$id = $_GET['id'];
+													$i = 1;
+													$sql= $wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_circles WHERE map=%s",$id);
+													$getCircleList = $wpdb->get_results($sql);
+													if($getCircleList)
+													{
+														?>
+														
 															<ul class="list_exist" id="circle_list_exist">
 														<?php
 														foreach($getCircleList as $circle)
 														{
 															$j= $i%2;
 															?>
-																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>"  >
+																<li class="edit_list <?php if($j==1){ echo "has_background";  } ?>" data-list_id="<?php echo $circle->id; ?>"  >
 																	<div class="list_number">
 																		<?php
-																			echo $circle->id;
+																			echo $i;
 																		?>
 																	</div>
 																	<div class="edit_list_item">
@@ -1637,14 +1685,14 @@ function edit_map()
 														}
 														?>
 															</ul>
-														</div>
+														
 														<?php
 													}
 													else{
-														echo "<p>you have 0 circles on this map</p>";
+														echo "<p class='empty_circle'>you have 0 circles on this map</p>";
 													}
 												?>
-											
+										</div>	
 										<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<input type="hidden" id="circle_get_id" name="circle_get_id" />
 											<div class="update_list_item hide">
@@ -1676,7 +1724,7 @@ function edit_map()
 													</li>
 													<li>
 														<label for="circle_radius">Radius(meter)</label>
-														<input type="text" class="circle_edit_options_input" id="circle_edit_radius" name="circle_edit_radius" value="1000000" />
+														<input type="number" class="circle_edit_options_input" id="circle_edit_radius" name="circle_edit_radius" value="1000000" />
 													</li>
 													<li class="has_background">
 														<label for="circle_edit_line_width">Line Width</label>
@@ -1737,6 +1785,83 @@ function edit_map()
 											</div>
 										</form>
 									</div>
+								</div>
+							</li>
+							<li class="editing_section">
+								<div class="editing_heading">Layers
+									<div class="help">?
+										<div class="help-block">
+											<span class="pnt"></span>
+											<p>Highlighted road areas on map, highlight the roads and real-time traffic on them, make bicycle road highlighted on your map, transit roads, which connects cities etc...</p>
+										</div>
+									</div>
+									<span class="heading_arrow">▼</span>
+								</div>
+								<div class="edit_content map_options hide">
+									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<ul>
+											<li class="has_background pro">
+												<label for="traffic_layer_enable">Enable Traffic Layer 
+													
+												</label>
+												<input <?php if($thisMap->traffic_layer == "true"){ echo "checked='checked'"; } ?> type="checkbox" class="map_layers_inputs" id="traffic_layer_enable" name="traffic_layer_enable" value="true" />
+											</li>
+											<li class="pro">
+												<label for="bicycling_layer_enable">Enable Bicycling Layer</label>
+												<input <?php if($thisMap->bike_layer == "true"){ echo "checked='checked'"; } ?> type="checkbox" class="map_layers_inputs" id="bicycling_layer_enable" name="bicycling_layer_enable" value="true" />
+											</li>
+											<li class="has_background pro">
+												<label for="transit_layer_enable">Enable Transit layer</label>
+												<input <?php if($thisMap->transit_layer == "true"){ echo "checked='checked'"; } ?> type="checkbox" class="map_layers_inputs" id="transit_layer_enable" name="transit_layer_enable" value="true" />
+											</li>
+										</ul>
+										<input type="submit" class="button-primary" id="submit_layers" name="submit_layers" value="Save" />
+									</form>
+								</div>
+							</li>
+							<li class="editing_section">
+								<div class="editing_heading">Map Styling
+									<div class="help">?
+										<div class="help-block">
+											<span class="pnt"></span>
+											<p>Choose some color/tone for the current  map</p>
+										</div>
+									</div>
+									<span class="heading_arrow">▼</span>
+								</div>
+								<div class="edit_content map_options hide">
+									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<ul>
+											<li class="has_background pro">
+												<label for="g_map_styling_hue">Hue(color)</label>
+												<input type="text" class="color map_styling_options_inputs" id="g_map_styling_hue" name="g_map_styling_hue" value="<?php echo $thisMap->styling_hue; ?>" />
+											</li>
+											<li class="pro">
+												<label for="g_map_styling_lightness">Lightness</label>
+												<div class="slider-container" style="float:left; width:55%; height:25px; ">
+												<input class="map_styling_options_inputs" name="g_map_styling_lightness" id="g_map_styling_lightness" data-slider-highlight="true"  data-slider-values="<?php for($i=-100;$i<101;$i++){ if($i!= 100){ echo $i.","; }else{ echo $i; } } ?>" type="text" data-slider="true" value="<?php echo $thisMap->styling_lightness; ?>" />
+													<span style="position:absolute; top: 4px;left: 160px;"><?php echo $thisMap->styling_lightness; ?></span>
+												</div>
+											</li>
+											<li class="has_background pro">
+												<label for="g_map_styling_saturation">Saturation</label>
+												<div class="slider-container" style="float:left; width:55%; height:25px; ">
+												<input class="map_styling_options_inputs" name="g_map_styling_saturation" id="g_map_styling_saturation" data-slider-highlight="true"  data-slider-values="<?php for($i=-100;$i<101;$i++){ if($i!= 100){ echo $i.","; }else{ echo $i; } } ?>" type="text" data-slider="true" value="<?php echo $thisMap->styling_saturation; ?>" />
+													<span style="position:absolute; top: 4px;left: 160px;"><?php echo $thisMap->styling_saturation; ?></span>
+												</div>
+											</li>
+											<li class="pro">
+												<label for="g_map_styling_gamma">Gamma</label>
+												<div class="slider-container" style="float:left; width:55%; height:25px; ">
+												<input class="map_styling_options_inputs" name="g_map_styling_gamma" id="g_map_styling_gamma" data-slider-highlight="true"  data-slider-values="<?php for($i=1;$i<11;$i++){ if($i!= 10){ echo $i.","; }else{ echo $i; } } ?>" type="text" data-slider="true" value="<?php echo $thisMap->styling_gamma; ?>" />
+													<span style="position:absolute; top: 4px;left: 160px;"><?php echo $thisMap->styling_gamma; ?></span>
+												</div>
+											</li>
+										</ul>
+										
+										<input type="submit" class="button-primary" id="styling_submit" name="styling_submit" value="Save" />
+										<input type="button" class="button cancel_button" id="styling_set_default" value="Default" />
+									</form>
 								</div>
 							</li>
 							<!--<li class="editing_section">

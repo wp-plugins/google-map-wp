@@ -90,6 +90,7 @@
 							
 							var front_end_data= {
 								action: 'g_map_options',
+								task:"getxml",
 								map_id:<?php echo $id; ?>,
 							}
 							jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>", front_end_data, function(response){

@@ -2,7 +2,7 @@
 function circle_js($id)
 {
 	global $wpdb;
-	$sql = $wpdb->prepare("SELECT * FROM ".$wpdb->prefix."g_maps WHERE id=%s",$id);
+	$sql = $wpdb->prepare("SELECT * FROM ".$wpdb->prefix."g_maps WHERE id=%d",$id);
 	$map = $wpdb->get_results($sql);
 	foreach($map as $map)
 	{
@@ -11,10 +11,16 @@ function circle_js($id)
 				var data;
 				var circlemarker;
 				var newcircle;
+				var editcircle;
+				var circlemarkeredit;
 				jQuery(document).ready(function(){
+					loadCircleMap("<?php echo $map->id; ?>","#<?php echo $map->styling_hue; ?>","<?php echo $map->styling_saturation; ?>","<?php echo $map->styling_lightness; ?>","<?php echo $map->styling_gamma; ?>","<?php echo $map->zoom; ?>","<?php echo $map->type; ?>","<?php echo $map->bike_layer; ?>","<?php echo $map->traffic_layer; ?>","<?php echo $map->transit_layer; ?>");
+				})
+				function loadCircleMap(id,hue,saturation,lightness,gamma,zoom,type,bike,traffic,transit){
 					data = {
 						action:'g_map_options',
-						map_id:<?php echo $map->id; ?>,
+						map_id:id,
+						task:"getxml",
 					}
 					
 					jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>",data,function(response){
@@ -27,20 +33,14 @@ function circle_js($id)
 								var mapcenter = new google.maps.LatLng(
 									parseFloat(maps[i].getAttribute("center_lat")),
 									parseFloat(maps[i].getAttribute("center_lng")));
+
 								var mapOptions = {
-									zoom: <?php echo $map->zoom; ?>,
+									zoom: parseInt(zoom),
 									center: mapcenter,
-									mapTypeId: google.maps.MapTypeId.<?php echo $map->type; ?>,
 								}
 								mapcircle = new google.maps.Map(document.getElementById('g_map_circle'), mapOptions);
 								map_circle_edit = new google.maps.Map(document.getElementById('g_map_circle_edit'),mapOptions);
-								google.maps.event.addListener(mapcircle, 'rightclick', function(event){
-									placeCircle(event.latLng);
-									updateCircleInputs(event.latLng);
-								});
 								
-								
-
 								var input_circle = document.getElementById("circle_center_addr");
 								var autocomplete_circle = new google.maps.places.Autocomplete(input_circle);
 								google.maps.event.addListener(autocomplete_circle, 'place_changed', function(){
@@ -62,36 +62,37 @@ function circle_js($id)
 									})
 								})
 								
+								jQuery("#circle_add_button").on("click",function(){
+									google.maps.event.trigger(mapcircle, 'resize');
+									mapcircle.setCenter(mapcenter);
+									if(newcircle){
+										newcircle.setMap(null);
+										circlemarker.setMap(null);
+										circlemarker ="";
+										newcircle = "";
+									}
+								})
 								
-								
-								/*jQuery("#circle_center_addr").on("keyup change",function(){
-									geocoder = new google.maps.Geocoder();
-									geocoder.geocode({ 'address': jQuery(this).val()}, function (results, status) {
-										if(newcircle)
-										{
-											newcircle.setCenter(results[0].geometry.location);
-											circlemarker.setPosition(results[0].geometry.location);
-										}
-										else
-										{
-											placeCircle(results[0].geometry.location)
-										}
-										mapcircle.setCenter(results[0].geometry.location);
-										updateCircleInputs(results[0].geometry.location);
-									})
-								})*/
+								google.maps.event.addListener(mapcircle, 'rightclick', function(event){
+									placeCircle(event.latLng);
+									updateCircleInputs(event.latLng);
+								});
 								
 								
 								
 								jQuery(".edit_circle_list_delete a").on("click",function(){
+									if(editcircle){
+										editcircle.setMap(null);
+										circlemarkeredit.setMap(null);
+									}
 									var parent = jQuery(this).parent();
 									var idelement = parent.find(".circle_edit_id");
 									var circleid = idelement.val();
 									jQuery("#g_maps > div").not("#g_map_polygon").addClass("hide");
 									jQuery("#g_map_circle_edit").removeClass("hide");
-									jQuery("#circle_edit_exist_section").hide(200);
-									jQuery(this).parent().parent().parent().parent().parent().find(".update_list_item").show(200);
-									jQuery("#circle_add_button").hide(200);
+									jQuery("#circle_edit_exist_section").hide(200).addClass("tab_options_hidden_section");
+									jQuery(this).parent().parent().parent().parent().parent().find(".update_list_item").show(200).addClass("tab_options_active_section");
+									jQuery("#circle_add_button").hide(200).addClass("tab_options_hidden_section");
 									google.maps.event.trigger(map_circle_edit, 'resize');
 									map_circle_edit.setCenter(mapcenter);
 									jQuery("#circle_get_id").val(circleid);
@@ -110,10 +111,6 @@ function circle_js($id)
 											var line_opacity = circles[j].getAttribute("line_opacity");
 											var fill_color = circles[j].getAttribute("fill_color");
 											var fill_opacity = circles[j].getAttribute("fill_opacity");
-											var hover_line_color = circles[j].getAttribute("hover_line_color");
-											var hover_line_opacity = circles[j].getAttribute("hover_line_opacity");
-											var hover_fill_color = circles[j].getAttribute("hover_fill_color");
-											var hover_fill_opacity = circles[j].getAttribute("hover_fill_opacity");
 											var show_marker = circles[j].getAttribute("show_marker");
 											jQuery("#circle_edit_name").val(name);
 											jQuery("#circle_edit_center_lat").val(center_lat);
@@ -134,12 +131,6 @@ function circle_js($id)
 											jQuery("#circle_edit_fill_color").val(fill_color);
 											jQuery("#circle_edit_fill_opacity").simpleSlider("setValue", fill_opacity);
 											
-											jQuery("#hover_circle_edit_line_color").val(hover_line_color);
-											jQuery("#hover_circle_edit_line_opacity").simpleSlider("setValue", hover_line_opacity);
-											jQuery("#hover_circle_edit_fill_color").val(hover_fill_color);
-											jQuery("#hover_circle_edit_fill_opacity").simpleSlider("setValue", hover_fill_opacity);
-											
-											
 											editcircleposition = new google.maps.LatLng(parseFloat(circles[j].getAttribute("center_lat")),
 												parseFloat(circles[j].getAttribute("center_lng")));
 											var geocoder= new google.maps.Geocoder();
@@ -151,7 +142,7 @@ function circle_js($id)
 											})
 											map_circle_edit.setCenter(editcircleposition);
 											
-											var circlemarkeredit = new google.maps.Marker({
+											circlemarkeredit = new google.maps.Marker({
 												position:editcircleposition,
 												map:map_circle_edit,
 												title:name,
@@ -166,7 +157,7 @@ function circle_js($id)
 												}
 											})
 											
-											var editcircle = new google.maps.Circle({
+											editcircle = new google.maps.Circle({
 												map:map_circle_edit,
 												center:editcircleposition,
 												title:name,
@@ -211,21 +202,6 @@ function circle_js($id)
 												})
 											})
 											
-											
-											/*jQuery("#circle_edit_center_addr").on("change",function(){
-												geocoder = new google.maps.Geocoder();
-												geocoder.geocode({ 'address': jQuery(this).val()}, function (results, status) {
-													if(editcircle)
-													{
-														editcircle.setCenter(results[0].geometry.location);
-														circlemarkeredit.setPosition(results[0].geometry.location);
-													}
-													map_circle_edit.setCenter(results[0].geometry.location);
-													updateCircleEditInputs(results[0].geometry.location);
-												})
-											})*/
-											
-											
 											updateCircleEditInputs(circlemarkeredit.getPosition());
 											google.maps.event.addListener(map_circle_edit, "rightclick", function(event){
 												if(circlemarkeredit)
@@ -246,7 +222,7 @@ function circle_js($id)
 							}
 						}
 					},"json")
-				})
+				}
 				function placeCircle(location)
 				{
 					if(circlemarker)
@@ -312,7 +288,6 @@ function circle_js($id)
 							fillColor:"#"+circle_fill_color,
 						}); 
 					})
-
 				}
 				function updateCircleInputs(location)
 				{
