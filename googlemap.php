@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.1.5
+Version: 2.1.6
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -308,7 +308,7 @@ function g_map_nopriv_options_callback(){
 			$response ="<?xml version='1.0' encoding='UTF-8'?>
 					<maps>";
 			global $wpdb;
-			
+			$id=$_POST['map_id'];
 			
 			$sql = $wpdb->prepare("SELECT * FROM ".$wpdb->prefix."g_maps WHERE id=%s",$id);
 			$getMap = $wpdb->get_results($sql);

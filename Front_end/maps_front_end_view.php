@@ -91,13 +91,13 @@
 							var front_end_data= {
 								action: 'g_map_options',
 								task:"getxml",
-								map_id:<?php echo $id; ?>,
+								map_id:<?php echo $map->id; ?>,
 							}
 							jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>", front_end_data, function(response){
 								if(response.success)
 								{
 									var xml = jQuery.parseXML(response.success);
-	
+									console.log(xml);
 									var markers = xml.documentElement.getElementsByTagName("marker");
 									for(var i = 0; i < markers.length; i++)
 									{
