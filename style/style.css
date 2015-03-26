@@ -159,23 +159,22 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 
 #adminform .map_heading {
 	display:block;
-	height:31px;
 }
 
 #adminform .map_heading ul {
+	display:table;
 	width:100%;
 	margin:0px 0px 20px 0px;
 	padding:0px 0px 0px 0px;
 	border-bottom:1px solid #ccc;
-	height:30px;
 }
 
 #adminform .map_heading ul li {
 	display:block;
 	float:left;
-	height:29px;
+	height:27px;
 	cursor:pointer;
-	margin:0px 5px 0px 0px;
+	margin:5px 5px 0px 0px;
 	padding:0px 0px 0px 0px !important;
 	border:1px solid #ccc;
 	padding-right:16px;
@@ -217,6 +216,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 
 
 .admin_edit_section_container {
+	float:left;
 	display:block;
 	width:100%;
 	min-height:1200px;
