@@ -47,12 +47,19 @@ Now you can set your Image Gallery options, images and use our Google Map.
 
 == Screenshots ==
 
-1.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
-2.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
-3.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
-4.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
-5.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
-6.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+1.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps Layer
+12.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps Layer
+13.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps Markers
+14.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps Markers
+15.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps Markers
+16.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps Markers
+17.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps Shapes
+21.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+22.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+23.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+24.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+25.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
+26.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
 
 == Changelog ==
 
