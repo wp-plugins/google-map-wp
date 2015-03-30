@@ -173,6 +173,7 @@ function maps_js($id)
 										
 										google.maps.event.trigger(map_admin_view, 'resize');
 										map_admin_view.setCenter(mapcenter);
+										map_admin_view.setZoom(parseInt(zoom));
 									})
 									
 									

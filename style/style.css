@@ -164,7 +164,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 #adminform .map_heading ul {
 	display:table;
 	width:100%;
-	margin:0px 0px 20px 0px;
+	margin:0px 0px 0px 0px;
 	padding:0px 0px 0px 0px;
 	border-bottom:1px solid #ccc;
 }
@@ -174,7 +174,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	float:left;
 	height:27px;
 	cursor:pointer;
-	margin:5px 5px 0px 0px;
+	margin:10px 5px 0px 0px;
 	padding:0px 0px 0px 0px !important;
 	border:1px solid #ccc;
 	padding-right:16px;
@@ -219,7 +219,6 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	float:left;
 	display:block;
 	width:100%;
-	min-height:1200px;
 	border-left:1px solid #ccc;
 	background:#fff;
 }
@@ -547,9 +546,17 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	border-left:4px solid #7ad03a;
 }
 
-.shortcode_container {
+.shortcode_containers {
 	display:block;
-	width:16%
+	float:left;
+	width:100%;
+}
+
+.shortcode_container {
+	float:left;
+	display:block;
+	width:16%;
+	margin-right:40px;
 }
 
 .shortcode_description {
@@ -568,11 +575,12 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 .shortcode_view {
 	width:90%;
 	margin-left:5px;
-	height:40px;
+	height:55px;
 	display:inline-block;
+	margin-bottom:20px;
 	text-align:center;
 	padding-top:10px;
-	font-size:15px;
+	font-size:13px;
 	background:#eee;
 	border: 1px solid #ddd;
 }

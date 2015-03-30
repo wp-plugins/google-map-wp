@@ -1888,12 +1888,20 @@ function edit_map()
 							<div id="g_map_circle_edit" class="g_map hide" style="height:<?php echo $thisMap->height ?>px;width:<?php echo $thisMap->width/2 ?>%;border-radius:<?php echo $thisMap->border_radius ?>px;position:relative !important; "></div>
 							<input type="hidden" id="circlemarkeraddress" />
 						</div>
-						<div class="shortcode_container">
-							<div class="shortcode_heading">Shortcode</div>
-							<p class="shortcode_description">Copy & paste the shortcode directly into any WordPress post or page.</p>
-							<div class="shortcode_view">[huge_it_maps id="<?php echo $thisMap->id; ?>"]</div>
+						<div class="shortcode_containers">
+							<div class="shortcode_container">
+								<div class="shortcode_heading">Shortcode</div>
+								<p class="shortcode_description">Copy & paste the shortcode directly into any WordPress post or page.</p>
+								<div class="shortcode_view">[huge_it_maps id="<?php echo $thisMap->id; ?>"]</div>
+							</div>
+							<div class="shortcode_container">
+								<div class="shortcode_heading">Template Include</div>
+								<p class="shortcode_description">Copy & paste this code into a template file to include the map within your theme.</p>
+								<div class="shortcode_view">&lt;?php echo do_shortcode("[huge_it_maps id="<?php echo $thisMap->id; ?>"]"); ?&gt;</div>
+							</div>
 						</div>
 					</div>
+					
 					<style>
 						.edit_list_delete a {
 							background:url(<?php echo plugins_url("../images/edit1.png",__FILE__); ?>) center center no-repeat !important;

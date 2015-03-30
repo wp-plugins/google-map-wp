@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.1.8
+Version: 2.1.9
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -69,6 +69,54 @@ function add_google_map_inline_popup_content() {
 			},"json")
 			return false;
 		  })
+		  jQuery("#huge_it_map_select").on("change",function(){
+			var name = jQuery("#map_name").val();
+			var type = jQuery("#map_type").val();
+			var width = jQuery("#map_width").val();
+			var height = jQuery("#map_height").val();
+			var align = jQuery("#map_align").val();
+			id = jQuery('#huge_it_map_select option:selected').val();
+			var data = {
+				action:"g_map_options",
+				task:"post_shortcode_change_map",
+				id:id,
+				name:name,
+				type:type,
+				width:width,
+				height:height,
+				align:align,
+			}
+			jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>",data,function(response){
+				if(response.success){
+					jQuery("#map_name").val(response.name);
+					if(response.type == "ROADMAP"){
+						jQuery("#map_type option").eq(0).attr("selected","selected");
+					}
+					if(response.type == "SATELLITE"){
+						jQuery("#map_type option").eq(1).attr("selected","selected");
+					}
+					if(response.type == "HYBRID"){
+						jQuery("#map_type option").eq(2).attr("selected","selected");
+					}
+					if(response.type == "TERRAIN"){
+						jQuery("#map_type option").eq(3).attr("selected","selected");
+					}
+					jQuery("#map_width").simpleSlider("setValue", response.width);
+					if(response.align == "left"){
+						jQuery("#map_align option").eq(0).attr("selected","selected");
+					}
+					if(response.align == "center"){
+						jQuery("#map_align option").eq(1).attr("selected","selected");
+					}
+					if(response.align == "right"){
+						jQuery("#map_align option").eq(2).attr("selected","selected");
+					}
+					jQuery("#map_height").val(response.height);
+					jQuery("#map_border_radius").val(response.border_radius);
+				}
+			},"json")
+			return false;
+		})
 		  jQuery('#map_width').bind("slider:changed", function (event, data) {
 				 jQuery(this).parent().find('span').html(data.value+"%");
 				 jQuery(this).val(data.value);
@@ -76,6 +124,11 @@ function add_google_map_inline_popup_content() {
 		});
 </script>
 <style>
+	#huge_it_map_select {
+		width:51%;
+	}
+	
+	
 	.tb_popup_form {
 		position:relative;
 		display:block;
@@ -92,10 +145,11 @@ function add_google_map_inline_popup_content() {
 		width:35%
 	}
 	
-	.tb_popup_form li input {
+	.tb_popup_form li input, .tb_popup_form li select {
 		float:left;
 		width:60%;
 	}
+
 	
 	.slider, .slider-container {
 		display:block;
@@ -147,7 +201,7 @@ function add_google_map_inline_popup_content() {
 				
 				<li class="has_background">
 					<label for="map_width">Map width</label>
-					<div class="slider-container" style="float:left; width:55%; height:25px; ">
+					<div class="slider-container" style="float:left; width:60%; height:25px; ">
 						<input name="map_width" id="map_width" data-slider-highlight="true"  data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true" value="<?php echo $shortcodemap->width; ?>" />
 						<span style="position:absolute; top: -1px; right: 0px;"><?php echo $shortcodemap->width; ?>%</span>
 					</div>
@@ -407,6 +461,24 @@ function g_map_options_callback()
 		$xmlStr=str_replace("'",'&#39;',$xmlStr);
 		$xmlStr=str_replace("&",'&amp;',$xmlStr);
 		return $xmlStr;
+	}
+	if(isset($_POST['task'])){
+		if($_POST['task']=='post_shortcode_change_map'){
+			global $wpdb;
+			$sql=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_maps WHERE id=%d",$_POST['id']);
+			$getMap=$wpdb->get_row($sql);
+			if($getMap){
+				echo json_encode(array("success"=>1,
+										"name"=>$getMap->name,
+										"type"=>$getMap->type,
+										"width"=>$getMap->width,
+										"height"=>$getMap->height,
+										"align"=>$getMap->align,
+										"border_radius"=>$getMap->border_radius,
+										));
+				die();
+			}
+		}
 	}
 	if(isset($_POST['table'])){
 		global $wpdb;
