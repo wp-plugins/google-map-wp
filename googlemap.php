@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.1.9
+Version: 2.2.0
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -1003,7 +1003,7 @@ function huge_it_google_maps_activate(){
 	`align` varchar(11) DEFAULT 'left' NOT NULL,
 	`info_type` varchar(9) DEFAULT 'click' NOT NULL,
 	PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ";
+	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
 	
 	
 	
@@ -1019,7 +1019,7 @@ function huge_it_google_maps_activate(){
 	`img` varchar(255) NOT NULL,
 	`size` varchar(11) NOT NULL,
 	PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ";
+	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
 	
 	
 	$sql_huge_it_google_maps_polygones = "
@@ -1039,7 +1039,7 @@ function huge_it_google_maps_activate(){
 	`hover_fill_color` varchar(9) NOT NULL,
 	`line_width` varchar(9) NOT NULL,
 	PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ";
+	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
 	
 	
 	
@@ -1055,7 +1055,7 @@ function huge_it_google_maps_activate(){
 	`hover_line_color` varchar(9) NOT NULL,
 	`hover_line_opacity` varchar(9) NOT NULL,
 	PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ";
+	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
 	
 	
 	$sql_huge_it_google_maps_circles = "
@@ -1077,8 +1077,13 @@ function huge_it_google_maps_activate(){
 	`hover_fill_opacity` varchar(7) NOT NULL,
 	`show_marker` int(7) NOT NULL,
 	PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ";
+	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
 	
+	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps CONVERT TO CHARACTER SET utf8");
+	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_markers CONVERT TO CHARACTER SET utf8");
+	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_polygones CONVERT TO CHARACTER SET utf8");
+	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_polylines CONVERT TO CHARACTER SET utf8");
+	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_circles CONVERT TO CHARACTER SET utf8");
 	
 	$wpdb->query($sql_huge_it_google_maps_maps);
 
