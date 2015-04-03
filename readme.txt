@@ -17,7 +17,7 @@ Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Maps, wh
 * [Wordpress Google Maps](http://huge-it.com/google-map/)
 * [Demo Google Maps](http://huge-it.com/wordpress-plugins-google-map-layers/)
 * [Demo Google Maps](http://huge-it.com/wordpress-plugins-google-map-view-admin/)
-* [User Google Maps](http://huge-it.com/wordpress-plugins-google-map-user-manual/)
+* [User Manual Google Maps](http://huge-it.com/wordpress-plugins-google-map-user-manual/)
 
 https://www.youtube.com/watch?v=-2z8tDZeaBs
 
