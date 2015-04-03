@@ -12,7 +12,14 @@ Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Maps, wh
 
 == Description ==
 
-### Wordpress Google Map
+### Wordpress Google Maps
+
+* [Wordpress Google Maps](http://huge-it.com/google-map/)
+* [Demo Google Maps](http://huge-it.com/wordpress-plugins-google-map-layers/)
+* [Demo Google Maps](http://huge-it.com/wordpress-plugins-google-map-view-admin/)
+* [User Google Maps](http://huge-it.com/wordpress-plugins-google-map-user-manual/)
+
+https://www.youtube.com/watch?v=-2z8tDZeaBs
 
 Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Maps, where  we have our special contribution. Most simple and effective tool for rapid creation of individual Google Maps in posts and pages.
 
