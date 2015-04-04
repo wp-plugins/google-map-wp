@@ -444,6 +444,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	border:2px solid #fff;
 	margin:0px 5px 5px 5px;
 	height:48px;
+	width:48px;
 }
 
 .marker_image_choose input[type="radio"] {
@@ -456,8 +457,10 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	z-index:2;
 }
 
-.imag_block {
-	display:inline-block;
+.imag_block img {
+	display:block;
+	width:48px;
+	height:48px;
 }
 
 .marker_image_choose input[type="radio"]:checked {
@@ -573,7 +576,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 }
 
 .shortcode_view {
-	width:90%;
+	width:100%;
 	margin-left:5px;
 	height:55px;
 	display:inline-block;

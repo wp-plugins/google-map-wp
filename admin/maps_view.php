@@ -628,6 +628,12 @@ function edit_map()
 													<ul>
 														<li>
 															<div class="imag_block">
+																<img src="<?php echo plugins_url("../images/default-icon.png",__FILE__); ?>" alt="" />
+															</div>
+															<input type="radio" class="marker_image_change_marker marker_image_choose_button" name="marker_image_change" value="default" />
+														</li>
+														<li>
+															<div class="imag_block">
 																<img src="<?php echo plugins_url("../images/icons/marker48.png",__FILE__); ?>" alt="" />
 															</div>
 															<input type="radio" class="marker_image_change_marker marker_image_choose_button" name="marker_image_change" value="marker" />
@@ -924,6 +930,12 @@ function edit_map()
 												<li class="pro_icon marker_image_choose">
 													
 													<ul>
+														<li>
+															<div class="imag_block">
+																<img src="<?php echo plugins_url("../images/default-icon.png",__FILE__); ?>" alt="" />
+															</div>
+															<input type="radio" class="marker_image_change_marker marker_image_choose_button" name="marker_image_change" value="default" />
+														</li>
 														<li>
 															<div class="imag_block">
 																<img src="<?php echo plugins_url("../images/icons/marker48.png",__FILE__); ?>" alt="" />
@@ -1897,7 +1909,7 @@ function edit_map()
 							<div class="shortcode_container">
 								<div class="shortcode_heading">Template Include</div>
 								<p class="shortcode_description">Copy & paste this code into a template file to include the map within your theme.</p>
-								<div class="shortcode_view">&lt;?php echo do_shortcode("[huge_it_maps id="<?php echo $thisMap->id; ?>"]"); ?&gt;</div>
+								<div class="shortcode_view">&lt;?php echo do_shortcode('[huge_it_maps id="<?php echo $thisMap->id; ?>']"); ?&gt;</div>
 							</div>
 						</div>
 					</div>
