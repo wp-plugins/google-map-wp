@@ -1,7 +1,7 @@
 === Google Map ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/google-map/
-Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, google, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, controls, gpx, jquery tabs, openstreetmap, styling,
+Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, google, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, controls, gpx, jquery tabs, openstreetmap, styling, list, shape, cluster, shortcode, latitude,
 Requires at least: 3.0.1
 Tested up to: 4.1.1
 Stable tag: 2.2.1
@@ -42,7 +42,7 @@ If you think, that you found a bug in our [WordPress Google Map](http://huge-it.
 
 == Installation ==
 
-### First download the ZIP file ,
+### First download the ZIP file - Google Maps ,
 
 1. Log in to your website administrator panel.   
 2. Go to Plugins page, and add new plugin.    
@@ -147,7 +147,7 @@ PRO Map type. Choose one from 4 different views of the map
 
 PRO Marker Infowindow Open On. Choose how to open information on marker
 
-**2.2 Markers**
+**2.2 Markers - Google Map**
 
 Click +Add New Marker and create unlimited markers for your specific places
 .
@@ -171,7 +171,7 @@ PRO Size of Icon. Choose marker size
 
 PRO Custom Marker Icon. You can upload your preferable icon(picture) for marker
 
-**2.3 Polygons**
+**2.3 Polygons - Google Map**
 
 Polygons - bounded highlighted area on the map, showing the specific range, limited with geometric figure. 
 
@@ -203,7 +203,7 @@ PRO On-Hover Line Transparency. Select the level of transparency for boundary li
 
 PRO On-Hover Line Color. Choose color for  boundary line while hover
 
-**2.4 Polylines**
+**2.4 Polylines - Google Map**
 
 Polyline - continuous line composed of one or more line segments, which creates specific track
 
@@ -225,7 +225,7 @@ PRO On-Hover Line Color. Choose color  of  Polyline while hover
 
 PRO On-Hover Line Transparency.  Select the level of Polyline transparency while hover
 
-**2.5 Circles**
+**2.5 Circles - Google Map**
 
 Circle - round area, showing the specific range
 
