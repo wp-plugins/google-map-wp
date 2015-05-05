@@ -3,7 +3,7 @@ Contributors: Huge-IT
 Donate link: http://huge-it.com/google-map/
 Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, google, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, gpx, openstreetmap, shape, cluster, latitude,
 Requires at least: 3.0.1
-Tested up to: 4.2
+Tested up to: 4.2.1
 Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
