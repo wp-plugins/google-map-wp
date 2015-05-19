@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.2.2
+Version: 2.2.3
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -999,9 +999,16 @@ function huge_it_google_maps_activate(){
 	`overview_map_controller` varchar(5) DEFAULT 'true' NOT NULL,
 	`center_lng` varchar(255) DEFAULT 0 NOT NULL,
 	`width` varchar(5) DEFAULT 100 NOT NULL,
-	`height` varchar(5) DEFAULT 300 NOT NULL,
+	`height` varchar(5) DEFAULT 450 NOT NULL,
 	`align` varchar(11) DEFAULT 'left' NOT NULL,
 	`info_type` varchar(9) DEFAULT 'click' NOT NULL,
+	`traffic_layer` varchar(55) DEFAULT 'false' NOT NULL,
+	`bike_layer` varchar(55) DEFAULT 'false' NOT NULL,
+	`transit_layer` varchar(55) DEFAULT 'false' NOT NULL,
+	`styling_hue` text NOT NULL,
+	`styling_lightness` varchar(55) DEFAULT '0' NOT NULL,
+	`styling_gamma` varchar(55) DEFAULT 1 NOT NULL,
+	`styling_saturation` varchar(55) DEFAULT '0' NOT NULL,
 	PRIMARY KEY (`id`)
 	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
 	
@@ -1079,11 +1086,11 @@ function huge_it_google_maps_activate(){
 	PRIMARY KEY (`id`)
 	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
 	
-	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps CONVERT TO CHARACTER SET utf8");
+	/*$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps CONVERT TO CHARACTER SET utf8");
 	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_markers CONVERT TO CHARACTER SET utf8");
 	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_polygones CONVERT TO CHARACTER SET utf8");
 	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_polylines CONVERT TO CHARACTER SET utf8");
-	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_circles CONVERT TO CHARACTER SET utf8");
+	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_circles CONVERT TO CHARACTER SET utf8");*/
 	
 	$wpdb->query($sql_huge_it_google_maps_maps);
 
@@ -1135,13 +1142,30 @@ function huge_it_google_maps_activate(){
 	}
 	
 	
-	
+	if(!$wpdb->get_var("SELECT count(styling_hue) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_hue TEXT NOT NULL AFTER info_type");
+	}
 
+	if(!$wpdb->get_var("SELECT count(styling_lightness) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_lightness varchar(55) DEFAULT 0 NOT NULL AFTER info_type");
+	}
 	
+	if(!$wpdb->get_var("SELECT count(styling_saturation) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_saturation varchar(55) DEFAULT 0 NOT NULL AFTER info_type");
+	}
 	
-	
-	
-	
+	if(!$wpdb->get_var("SELECT count(styling_gamma) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_gamma varchar(55) DEFAULT 1 NOT NULL  AFTER info_type");
+	}
+	if(!$wpdb->get_var("SELECT count(transit_layer) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix ."g_maps ADD transit_layer varchar(55) DEFAULT 'false' NOT NULL  AFTER info_type");
+	}
+	if(!$wpdb->get_var("SELECT count(bike_layer) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD bike_layer varchar(55) DEFAULT 'false' NOT NULL  AFTER info_type");
+	}
+	if(!$wpdb->get_var("SELECT count(traffic_layer) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD traffic_layer varchar(55) DEFAULT 'false' NOT NULL  AFTER info_type");
+	}
 }
 
 
