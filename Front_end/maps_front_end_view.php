@@ -101,6 +101,8 @@
 								mapTypeId : google.maps.MapTypeId.<?php echo $map->type; ?>,
 								draggable:false,
 								scrollwheel:false,
+								minZoom:<?php echo $map->min_zoom; ?>,
+								maxZoom:<?php echo $map->max_zoom; ?>
 							}
 							var front_end_map = new google.maps.Map(document.getElementById('huge_it_google_map<?php echo $map->id; ?>'),frontEndMapOptions)
 							

@@ -610,6 +610,8 @@ function ajax_js($id){
 					var map_controller_overview="false";
 				}
 				var map_zoom = jQuery("#map_zoom").val();
+				var min_zoom = jQuery("#min_zoom").val();
+				var max_zoom = jQuery("#max_zoom").val();
 				var map_center_lat = jQuery("#map_center_lat").val();
 				var map_center_lng = jQuery("#map_center_lng").val();
 				var map_width = jQuery("#map_width").val();
@@ -629,6 +631,8 @@ function ajax_js($id){
 					map_controller_street_view:map_controller_street_view,
 					map_controller_overview:map_controller_overview,
 					map_zoom:map_zoom,
+					min_zoom:min_zoom,
+					max_zoom:max_zoom,
 					map_center_lat:map_center_lat,
 					map_center_lng:map_center_lng,
 					map_width:map_width,

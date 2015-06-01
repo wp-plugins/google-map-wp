@@ -520,6 +520,20 @@ function edit_map()
 												</div>
 											</li>
 											<li class="has_background">
+												<label for="min_zoom">Minimum Zoom</label>
+												<div class="slider-container" style="float:left; width:55%; height:25px; ">
+													<input name="min_zoom" id="min_zoom" data-slider-highlight="true"  data-slider-values="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21" type="text" data-slider="true" value="<?php echo $thisMap->min_zoom; ?>" />
+													<span style="position:absolute; top: 4px;left: 160px;"><?php echo $thisMap->min_zoom; ?></span>
+												</div>
+											</li>
+											<li>
+												<label for="max_zoom">Maximum Zoom</label>
+												<div class="slider-container" style="float:left; width:55%; height:25px; ">
+													<input name="max_zoom" id="max_zoom" data-slider-highlight="true"  data-slider-values="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21" type="text" data-slider="true" value="<?php echo $thisMap->max_zoom; ?>" />
+													<span style="position:absolute; top: 4px;left: 160px;"><?php echo $thisMap->max_zoom; ?></span>
+												</div>
+											</li>
+											<li class="has_background">
 												<label for="map_center_addr">Center Address</label>
 												<input type="text" name="map_center_addr" id="map_center_addr" />
 											</li>
@@ -554,6 +568,142 @@ function edit_map()
 												<label for="map_border_radius" >Border Radius</label>
 												<input class="front_end_input_options" type="number" name="map_border_radius" id="map_border_radius" value="<?php echo $thisMap->border_radius; ?>" />
 											</li>
+											<li class="pro">
+												<label for="wheel_scroll">Wheel Scrolling</label>
+												<select class="front_end_input_options" name="wheel_scroll" id="wheel_scroll" readonly="readonly" >
+													<option value="true" selected="selected">On</option>
+													<option value="false" >Off</option>
+												</select>
+											</li>
+											<li class="has_background pro">
+												<label for="map_draggable">Map Draggable</label>
+												<select class="front_end_input_options" name="map_draggable" id="map_draggable" readonly="readonly">
+													<option value="true" selected="selected" >On</option>
+													<option value="false" >Off</option>
+												</select>
+											</li>
+											<li class="pro">
+												<label for="map_language">Map Language</label>
+												<select class="front_end_input_options" id="map_language" name="map_language">
+													<option value="location based" selected="selected">Location Based</option>
+													<option value="ar" >Arabic</option>
+													<option value="bg" >Bulgarian</option>
+													<option value="bn" >Bengali</option>
+													<option value="ca" >Catalan</option>
+													<option value="cs" >Czech</option>
+													<option value="da" >Danish</option>
+													<option value="de" >German</option>
+													<option value="el" >Greek</option>
+													<option value="en" >English</option>
+													<option value="en-AU" >English (Australian)</option>
+													<option value="en-GB" >English (Great Britain)</option>
+													<option value="es" >Spanish</option>
+													<option value="eu" >Basque</option>
+													<option value="fa">Farsi</option>
+													<option value="fi" >Finnish</option>
+													<option value="fil">Finnish</option>
+													<option value="fr">French</option>
+													<option value="gl" >Galician</option>
+													<option value="gu" >Gujarati</option>
+													<option value="hi" >Hindi</option>
+													<option value="hr" >Croatian</option>
+													<option value="hu" >Hungarian</option>
+													<option value="id" >Indonesian</option>
+													<option value="it" >Italian</option>
+													<option value="iw" >Hebrew</option>
+													<option value="ja" >Japanese</option>
+													<option value="kn" >Kannada</option>
+													<option value="ko" >Korean</option>
+													<option value="lt" >Lithuanian</option>
+													<option value="lv" >Latvian</option>
+													<option value="ml" >Malayalam</option>
+													<option value="mr" >Marathi</option>
+													<option value="nl" >Dutch</option>
+													<option value="no" >Norwegian</option>
+													<option value="pl" >Polish</option>
+													<option value="pt" >Portuguese</option>
+													<option value="pt-BR" >Portuguese (Brazil)</option>
+													<option value="pt-PT" >Portuguese (Portugal)</option>
+													<option value="ro" >Romanian</option>
+													<option value="ru" >Russian</option>
+													<option value="sk" >Slovak</option>
+													<option value="sl" >Slovenian</option>
+													<option value="sr" >Serbian</option>
+													<option value="sv" >Swedish</option>
+													<option value="ta" >Tamil</option>
+													<option value="te" >Telugu</option>
+													<option value="th" >Thai</option>
+													<option value="tl" >Tagalog</option>
+													<option value="tr" >Turkish</option>
+													<option value="uk" >Ukrainian</option>
+													<option value="vi" >Vietnamese</option>
+													<option value="zh-CN" >Chinese (Simplified)</option>
+													<option value="zh-TW" >Chinese (Traditional)</option>
+												</select>
+											</li>
+											<li class="has_background pro">
+												<label for="map_animation">Map Animation</label>
+												<select id="map_animation" name="map_animation">
+													<option value="none" selected="selected">None</option>
+													<optgroup label="Attention Seekers">
+														<option value="bounce" >bounce</option>
+														<option value="flash" >flash</option>
+														<option value="pulse" >pulse</option>
+														<option value="rubberBand" >rubberBand</option>
+														<option value="shake" >shake</option>
+														<option value="swing" >swing</option>
+														<option value="tada" >tada</option>
+														<option value="wobble">wobble</option>
+														<option value="jello" >jello</option>
+														<option value="rollIn" >rollIn</option>
+													</optgroup>
+													<optgroup label="Bouncing Entrances">
+														<option value="bounceIn" >bounceIn</option>
+														<option value="bounceInDown" >bounceInDown</option>
+														<option value="bounceInLeft" >bounceInLeft</option>
+														<option value="bounceInRight" >bounceInRight</option>
+														<option value="bounceInUp" >bounceInUp</option>
+													</optgroup>
+													<optgroup label="Fading Entrances">
+														<option value="fadeIn" >fadeIn</option>
+														<option value="fadeInDown" >fadeInDown</option>
+														<option value="fadeInDownBig" >fadeInDownBig</option>
+														<option value="fadeInLeft" >fadeInLeft</option>
+														<option value="fadeInLeftBig" >fadeInLeftBig</option>
+														<option value="fadeInRight" >fadeInRight</option>
+														<option value="fadeInRightBig" >fadeInRightBig</option>
+														<option value="fadeInUp" >fadeInUp</option>
+														<option value="fadeInUpBig" >fadeInUpBig</option>
+													</optgroup>
+													<optgroup label="Flippers">
+													<option value="flip" >flip</option>
+													<option value="flipInX" >flipInX</option>
+													<option value="flipInY" >flipInY</option>
+													</optgroup>
+													<optgroup label="Rotating Entrances">
+														<option value="lightSpeedIn" >lightSpeedIn</option>
+														<option value="rotateIn" >rotateIn</option>
+														<option value="rotateInDownLeft" >rotateInDownLeft</option>
+														<option value="rotateInDownRight" >rotateInDownRight</option>
+														<option value="rotateInUpLeft" >rotateInUpLeft</option>
+														<option value="rotateInUpRight" >rotateInUpRight</option>
+													</optgroup>
+													<optgroup label="Sliding Entrances">
+														<option value="slideInUp" >slideInUp</option>
+														<option value="slideInDown" >slideInDown</option>
+														<option value="slideInLeft" >slideInLeft</option>
+														<option value="slideInRight" >slideInRight</option>
+													</optgroup>
+													<optgroup label="Zooming Entrances">
+														<option value="zoomIn" >zoomIn</option>
+														<option value="zoomInDown" >zoomInDown</option>
+														<option value="zoomInLeft"> zoomInLeft</option>
+														<option value="zoomInRight" >zoomInRight</option>
+														<option value="zoomInUp" >zoomInUp</option>
+													</optgroup>
+												</select>
+											</li>
+											
 											<li class="pro">
 												<label for="map_type" >Map Type</label>
 												<select id="map_type" name="map_type" readonly="readonly" >
@@ -618,7 +768,7 @@ function edit_map()
 													<input type="text" id="marker_title" name="marker_title" />
 												</li>
 												<li class="description_container">
-													<label for="marker_description">Description</label>
+													<label for="marker_description">Description<span class="pro_desc"><a href="http://huge-it.com/google-map" target="_blank">Go Pro</a>&#32;&#32;&#32; to enable HTML in description</span></label>
 													<textarea class="description" id="marker_description" name="marker_description"></textarea>
 												</li>
 												<li class=" pro has_background">
@@ -921,7 +1071,7 @@ function edit_map()
 													<input type="text" id="marker_edit_title" name="marker_edit_title" />
 												</li>
 												<li class="description_container">
-													<label for="marker_edit_description">Description</label>
+													<label for="marker_edit_description">Description<span class="pro_desc"><a href="http://huge-it.com/google-map" target="_blank">Go Pro</a>&#32;&#32;&#32; to enable HTML in description</span></label>
 													<textarea class="description" id="marker_edit_description" name="marker_edit_description"></textarea>
 												</li>
 												<li class="pro has_background">

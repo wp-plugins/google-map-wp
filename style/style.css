@@ -6,6 +6,12 @@ tr,th,td,thead,tbody{margin:0px;padding:0px;border:0px;}
 .fixed{position:fixed}
 .clear{clear:both}
 
+.pro_desc {
+	display:block;
+	color:#a00;
+	line-height:20px;
+}
+
 .editing_heading .help {
 	float: right;
 	position: relative;

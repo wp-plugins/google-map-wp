@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.2.3
+Version: 2.2.4
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -751,8 +751,8 @@ function g_map_options_callback()
 	if(isset($_POST['task'])){
 		if($_POST['task']=="submit_general_options"){
 			global $wpdb;
-			$sql=$wpdb->prepare("UPDATE ".$wpdb->prefix ."g_maps SET name=%s,zoom=%s,border_radius=%s,center_lat=%s,center_lng=%s,pan_controller=%s,zoom_controller=%s,type_controller=%s,scale_controller=%s,street_view_controller=%s,overview_map_controller=%s,width=%s,height=%s,align=%s WHERE id=%s",
-						$_POST['map_name'],$_POST['map_zoom'],$_POST['map_border_radius'],$_POST['map_center_lat'],$_POST['map_center_lng'],$_POST['map_controller_pan'],$_POST['map_controller_zoom'],$_POST['map_controller_type'],$_POST['map_controller_scale'],$_POST['map_controller_street_view'],$_POST['map_controller_overview'],$_POST['map_width'],$_POST['map_height'],$_POST['map_align'],$_POST['id']);
+			$sql=$wpdb->prepare("UPDATE ".$wpdb->prefix ."g_maps SET name=%s,zoom=%s,border_radius=%s,center_lat=%s,center_lng=%s,pan_controller=%s,zoom_controller=%s,type_controller=%s,scale_controller=%s,street_view_controller=%s,overview_map_controller=%s,width=%s,height=%s,align=%s,min_zoom=%s,max_zoom=%s WHERE id=%s",
+						$_POST['map_name'],$_POST['map_zoom'],$_POST['map_border_radius'],$_POST['map_center_lat'],$_POST['map_center_lng'],$_POST['map_controller_pan'],$_POST['map_controller_zoom'],$_POST['map_controller_type'],$_POST['map_controller_scale'],$_POST['map_controller_street_view'],$_POST['map_controller_overview'],$_POST['map_width'],$_POST['map_height'],$_POST['map_align'],$_POST['min_zoom'],$_POST['max_zoom'],$_POST['id']);
 			if($wpdb->query($sql)){
 				$map_params=$wpdb->get_results($wpdb->prepare("SELECT * FROM ".$wpdb->prefix ."g_maps WHERE id=%s",$_POST['id']));
 				foreach($map_params as $param){
@@ -989,6 +989,8 @@ function huge_it_google_maps_activate(){
 	`name` varchar(50) NOT NULL,
 	`type` varchar(50) NOT NULL,
 	`zoom` int(5) NOT NULL,
+	`min_zoom` varchar(11) DEFAULT 0 NOT NULL,
+	`max_zoom` varchar(11) DEFAULT 22 NOT NULL,
 	`border_radius` int(5) NOT NULL,
 	`center_lat` varchar(255) DEFAULT 0 NOT NULL,
 	`pan_controller` varchar(5) DEFAULT 'true' NOT NULL,
@@ -1085,12 +1087,7 @@ function huge_it_google_maps_activate(){
 	`show_marker` int(7) NOT NULL,
 	PRIMARY KEY (`id`)
 	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ";
-	
-	/*$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps CONVERT TO CHARACTER SET utf8");
-	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_markers CONVERT TO CHARACTER SET utf8");
-	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_polygones CONVERT TO CHARACTER SET utf8");
-	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_polylines CONVERT TO CHARACTER SET utf8");
-	$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_circles CONVERT TO CHARACTER SET utf8");*/
+
 	
 	$wpdb->query($sql_huge_it_google_maps_maps);
 
@@ -1165,6 +1162,12 @@ function huge_it_google_maps_activate(){
 	}
 	if(!$wpdb->get_var("SELECT count(traffic_layer) FROM ".$wpdb->prefix ."g_maps")){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD traffic_layer varchar(55) DEFAULT 'false' NOT NULL  AFTER info_type");
+	}
+	if(!$wpdb->get_var("SELECT count(min_zoom) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD min_zoom varchar(11) DEFAULT 0 NOT NULL  AFTER info_type");
+	}
+	if(!$wpdb->get_var("SELECT count(max_zoom) FROM ".$wpdb->prefix ."g_maps")){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD max_zoom varchar(11) DEFAULT 22 NOT NULL  AFTER info_type");
 	}
 }
 
