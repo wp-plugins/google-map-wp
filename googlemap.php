@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.2.4
+Version: 2.2.5
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -989,8 +989,8 @@ function huge_it_google_maps_activate(){
 	`name` varchar(50) NOT NULL,
 	`type` varchar(50) NOT NULL,
 	`zoom` int(5) NOT NULL,
-	`min_zoom` varchar(11) DEFAULT 0 NOT NULL,
-	`max_zoom` varchar(11) DEFAULT 22 NOT NULL,
+	`min_zoom` varchar(55) DEFAULT 0 NOT NULL,
+	`max_zoom` varchar(55) DEFAULT 22 NOT NULL,
 	`border_radius` int(5) NOT NULL,
 	`center_lat` varchar(255) DEFAULT 0 NOT NULL,
 	`pan_controller` varchar(5) DEFAULT 'true' NOT NULL,
@@ -1137,38 +1137,115 @@ function huge_it_google_maps_activate(){
 	{
 		$wpdb->query($sqlInsertCircle);
 	}
-	
-	
-	if(!$wpdb->get_var("SELECT count(styling_hue) FROM ".$wpdb->prefix ."g_maps")){
+	//ALTER 1********************
+	$sql=$wpdb->get_results("SHOW columns FROM ".$wpdb->prefix ."g_maps");
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="styling_hue"){
+			$update=0;
+		}
+	}
+	if($update==1){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_hue TEXT NOT NULL AFTER info_type");
 	}
-
-	if(!$wpdb->get_var("SELECT count(styling_lightness) FROM ".$wpdb->prefix ."g_maps")){
+	//********************
+	
+	//ALTER 2********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="styling_lightness"){
+			$update=0;
+		}
+	}
+	if($update==1){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_lightness varchar(55) DEFAULT 0 NOT NULL AFTER info_type");
 	}
-	
-	if(!$wpdb->get_var("SELECT count(styling_saturation) FROM ".$wpdb->prefix ."g_maps")){
+	//********************
+
+	//ALTER 3********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="styling_saturation"){
+			$update=0;
+		}
+	}
+	if($update==1){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_saturation varchar(55) DEFAULT 0 NOT NULL AFTER info_type");
 	}
+	//********************
 	
-	if(!$wpdb->get_var("SELECT count(styling_gamma) FROM ".$wpdb->prefix ."g_maps")){
+	//ALTER 4********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="styling_gamma"){
+			$update=0;
+		}
+	}
+	if($update==1){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD styling_gamma varchar(55) DEFAULT 1 NOT NULL  AFTER info_type");
 	}
-	if(!$wpdb->get_var("SELECT count(transit_layer) FROM ".$wpdb->prefix ."g_maps")){
+	//********************
+
+	//ALTER 5********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="transit_layer"){
+			$update=0;
+		}
+	}
+	if($update==1){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix ."g_maps ADD transit_layer varchar(55) DEFAULT 'false' NOT NULL  AFTER info_type");
 	}
-	if(!$wpdb->get_var("SELECT count(bike_layer) FROM ".$wpdb->prefix ."g_maps")){
+	//********************
+	
+	//ALTER 6********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="bike_layer"){
+			$update=0;
+		}
+	}
+	if($update==1){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD bike_layer varchar(55) DEFAULT 'false' NOT NULL  AFTER info_type");
 	}
-	if(!$wpdb->get_var("SELECT count(traffic_layer) FROM ".$wpdb->prefix ."g_maps")){
+	//********************
+	
+	//ALTER 7********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="traffic_layer"){
+			$update=0;
+		}
+	}
+	if($update==1){
 		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD traffic_layer varchar(55) DEFAULT 'false' NOT NULL  AFTER info_type");
 	}
-	if(!$wpdb->get_var("SELECT count(min_zoom) FROM ".$wpdb->prefix ."g_maps")){
-		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD min_zoom varchar(11) DEFAULT 0 NOT NULL  AFTER info_type");
+	//********************
+	
+	//ALTER 8********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="min_zoom"){
+			$update=0;
+		}
 	}
-	if(!$wpdb->get_var("SELECT count(max_zoom) FROM ".$wpdb->prefix ."g_maps")){
-		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD max_zoom varchar(11) DEFAULT 22 NOT NULL  AFTER info_type");
+	if($update==1){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD min_zoom varchar(55) DEFAULT 0 NOT NULL  AFTER info_type");
 	}
+	//********************
+
+	//ALTER 9********************
+	$update=1;
+	foreach($sql as $a){
+		if($a->Field=="max_zoom"){
+			$update=0;
+		}
+	}
+	if($update==1){
+		$wpdb->query("ALTER TABLE ".$wpdb->prefix."g_maps ADD max_zoom varchar(55) DEFAULT 22 NOT NULL  AFTER info_type");
+	}
+	//********************
+
 }
 
 
