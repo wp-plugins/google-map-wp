@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/google-map/
 Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, gpx, openstreetmap, shape, cluster, latitude, bing maps, google earth, googlemaps, OSM, kml, best google maps, best maps, custom google map, custom google maps, google map shortcode, location by address, map short code, map styles,
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 2.2.5
+Stable tag: 2.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,9 @@ Now you can set your Image Gallery options, images and use our Google Map.
 26.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
 
 == Changelog ==
+
+= 2.2.6 =
+*  Security Bug fixed google maps.
 
 = 2.2.5 =
 *  Bug fixed google maps.

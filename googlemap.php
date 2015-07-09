@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.2.5
+Version: 2.2.6
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -483,11 +483,14 @@ function g_map_options_callback()
 	if(isset($_POST['table'])){
 		global $wpdb;
 		$table = $_POST['table'];
-		$sql = $wpdb->prepare("DELETE FROM ".$wpdb->prefix ."$table WHERE id=%s",$_POST['id']);
-		if($wpdb->query($sql)){
-			echo json_encode(array("success"=>1));
-			die();
+		if($table=="g_markers" || $table=="g_polygones" || $table=="g_polylines" || $table=="g_circles"){
+			$sql = $wpdb->prepare("DELETE FROM ".$wpdb->prefix ."%s WHERE id=%s",$_POST['table'],$_POST['id']);
+			if($wpdb->query($sql)){
+				echo json_encode(array("success"=>1));
+				die();
+			}
 		}
+		
 	}
 	if(isset($_POST['task'])){
 		if($_POST['task']=="styling_submit"){
