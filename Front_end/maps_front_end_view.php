@@ -64,18 +64,21 @@
 								});
 							}
 							jQuery(document).on("click tap drag scroll",function(e){
-								var container = jQuery("#huge_it_google_map<?php echo $map->id; ?>");
-								if (!container.is(e.target) && container.has(e.target).length === 0){
-									front_end_map.setOptions({
-										draggable:false,
-										scrollwheel: false,
-									});
-								}else{
-									front_end_map.setOptions({
-										draggable:true,
-										scrollwheel: true,
-									});
+								if(window.matchMedia('(max-width:768px)').matches){
+									var container = jQuery("#huge_it_google_map<?php echo $map->id; ?>");
+									if (!container.is(e.target) && container.has(e.target).length === 0){
+										front_end_map.setOptions({
+											draggable:false,
+											scrollwheel: false,
+										});
+									}else{
+										front_end_map.setOptions({
+											draggable:true,
+											scrollwheel: true,
+										});
+									}
 								}
+								
 							})
 							var div = parseInt(width)/parseInt(height);
 							jQuery(window).on("resize",function(){

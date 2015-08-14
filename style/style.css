@@ -361,14 +361,12 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	width:100%;
 	position:relative;
 	float:left;
-	height:35px;
 	line-height:35px;
 }
 
 .map_options form > ul  > li > label, .edit_content form .hidden_edit_content > ul  > li > label, .update_list_item > ul  > li > label {
 	position:relative;
 	float:left;
-	height:35px;
 	line-height:35px;
 	margin-left:3px;
 	width:43%;
@@ -421,7 +419,6 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	display:block;
 	position:relative;
 	width:100% !important;
-	height:120px !important
 }
 
 
@@ -506,10 +503,14 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 
 .edit_list {
 	display:block;
-	height:26px;
+	width:calc(100% - 10px);
+	width:-webkit-calc(100% - 10px);
+	width:-o-calc(100% - 10px);
+	width:-moz-calc(100% - 10px);
 	padding:5px;
 	line-height:35px;
 	margin:0px;
+	overflow:hidden;
 }
 
 .list_number {
@@ -523,6 +524,9 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	display:inline-block;
 	float:left;
 	width:38%;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
 }
 
 .edit_list_delete {
@@ -609,7 +613,19 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 
 
 
-
+@media screen and (max-width:1200px){
+	.map_options form > ul  > li > label, .edit_content form .hidden_edit_content > ul  > li > label, .update_list_item > ul  > li > label {
+		width:100%;
+	}
+	
+	.pro {
+		background-position:50% 19% !important;
+	}
+	
+	.slider-container {
+		width:100% !important;
+	}
+}
 
 
 
