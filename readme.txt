@@ -1,7 +1,7 @@
 === Google Map ===
 Contributors: Huge-IT
 Donate link: http://huge-it.com/google-map/
-Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, gpx, openstreetmap, shape, cluster, latitude, bing maps, google earth, googlemaps, kml, best google maps, best maps, custom google map, custom google maps, google map shortcode, location by address, map short code, map styles, post, posts,
+Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, wp maps, wp google maps, wp google map, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, gpx, openstreetmap, shape, cluster, latitude, bing maps, google earth, googlemaps, kml, best google maps, best maps, custom google map, custom google maps, google map shortcode, location by address, map short code, map styles, post, posts,gps,
 Requires at least: 3.0.1
 Tested up to: 4.2.4
 Stable tag: 2.2.8
@@ -23,11 +23,11 @@ https://www.youtube.com/watch?v=-2z8tDZeaBs
 
 Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Maps, where  we have our special contribution. Most simple and effective tool for rapid creation of individual Google Maps in posts and pages.
 
-With our Google Map, you can provide your visitors with information about the exact location of your company/place. To make sure that people can find your place, you should add the appropriate information to the markers of Google map. With the help of this plugin give information on the right location of your business, you distribute information about yourself, get free traffic and increases the number of transitions to your page from the usual search on Google.
-On the map you can create marker with has many beautiful styles. besides given styles you also can upload your preferable image and set it instead of marker
+With our Google s, you can provide your visitors with information about the exact location of your company/place. To make sure that people can find your place, you should add the appropriate information to the markers of Google maps. With the help of this plugin give information on the right location of your business, you distribute information about yourself, get free traffic and increases the number of transitions to your page from the usual search on Google.
+On the maps you can create marker with has many beautiful styles. besides given styles you also can upload your preferable image and set it instead of marker
 We also added useful special features. You can select the exact location, track or spread area of a place.
 
-Polygons - bounded highlighted area on the map, showing the specific range, limited with geometric figure. You can easy create a polygon, give shape and set styles on it. With polygon you can show to your visitors the borders of a specific location. 
+Polygons - bounded highlighted area on the maps, showing the specific range, limited with geometric figure. You can easy create a polygon, give shape and set styles on it. With polygon you can show to your visitors the borders of a specific location. 
 
 Polylines - continuous line composed of one or more line segments, which creates specific track. With Polylines you can highlight specific road/track, give styles to the path and change it whenever you need. Show to you visitors how to get to your place and many other things
 Circles - round area, showing the specific range. With circle you can take the area into round border and give styles to it.
@@ -50,7 +50,7 @@ If you think, that you found a bug in our [WordPress Google Map](http://huge-it.
 4. Click `Install Now` button.     
 5. Then click `Activate Plugin` button. 
 
-Now you can set your Image Gallery options, images and use our Google Map.
+Now you can set your Image Gallery options, images and use our Google Maps.
 
 == Screenshots ==
 
@@ -126,9 +126,9 @@ In order to add created Google Maps plugin in post/page, copy/past the shortcode
 
 **Step 2 Edit Google Maps**
 
-2.1 Google Map Options. 
+2.1 Google Maps Options. 
 
-Google Map name. Give a name to your Google map
+Google Maps names. Give a names to your Google maps
 
 Enable Pan-Controller. Select to enable movement controller
 
@@ -142,23 +142,23 @@ Enable Street-View-Controller. Select to be able to see streets with “little m
 
 Enable Overview-Map-Controller. Select to see map controller on the bottom right corner
 
-Default Zoom. Set the zoom level for map
+Default Zoom. Set the zoom level for maps
 
-Center Address. Give address to map center 
+Center Address. Give address to maps center 
 
-Center Latitude. Set latitude for the map center 
+Center Latitude. Set latitude for the maps center 
 
-Center Longitude. Set longitude for map center
+Center Longitude. Set longitude for maps center
 
-Map width. Give size for map width (in presents)
+Map width. Give size for maps width (in presents)
 
-Map height. Give size for map height (in px)
+Map height. Give size for maps height (in px)
 
 Map align. Put your map on the left, right or center within  theme container
 
-Border Radius. Set the radius for map borders
+Border Radius. Set the radius for maps borders
 
-PRO Map type. Choose one from 4 different views of the map
+PRO Map type. Choose one from 4 different views of the maps
 
 PRO Marker Infowindow Open On. Choose how to open information on marker
 
