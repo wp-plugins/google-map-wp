@@ -559,6 +559,41 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 	border-left:4px solid #7ad03a;
 }
 
+.map_database_actions_section {
+	position:relative;
+	float:none;
+	display:block;
+	width:calc(100% - 10px);
+	width:-webkit-calc(100% - 10px);
+	width:-o-calc(100% - 10px);
+	width:-ms-calc(100% - 10px);
+	width:-moz-calc(100% - 10px);
+	overflow:hidden;
+	padding:5px;
+}
+
+.map_database_actions_section .button {
+	margin-right:10px;
+	float:left;
+}
+
+.map_database_actions_section .pro_desc {
+	float:left;
+	line-height:28px;
+}
+
+.map_database_actions_section .copy_map {
+	position:relative;
+	float:left;
+	width:50%;
+	margin:0px;
+	padding:0px;
+}
+
+.map_database_actions_section .copy_map .copy_map_button {
+	
+}
+
 .shortcode_containers {
 	display:block;
 	float:left;

@@ -102,12 +102,23 @@
 								streetViewControl: <?php echo $map->street_view_controller; ?>,
 								overviewMapControl: <?php echo $map->overview_map_controller; ?>,
 								mapTypeId : google.maps.MapTypeId.<?php echo $map->type; ?>,
-								draggable:false,
-								scrollwheel:false,
 								minZoom:<?php echo $map->min_zoom; ?>,
 								maxZoom:<?php echo $map->max_zoom; ?>
 							}
 							var front_end_map = new google.maps.Map(document.getElementById('huge_it_google_map<?php echo $map->id; ?>'),frontEndMapOptions)
+							
+							if(window.matchMedia('(max-width:768px)').matches){
+								front_end_map.setOptions({
+									draggable:false,
+									scrollwheel:false,
+								});
+							}else{
+								front_end_map.setOptions({
+									draggable:<?php echo $map->draggable; ?>,
+									scrollwheel:<?php echo $map->wheel_scroll; ?>,
+								});
+							}
+							
 							
 							var front_end_data= {
 								action: 'g_map_options',

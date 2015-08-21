@@ -2050,6 +2050,11 @@ function edit_map()
 							<div id="g_map_circle_edit" class="g_map hide" style="height:<?php echo $thisMap->height ?>px;width:<?php echo $thisMap->width/2 ?>%;border-radius:<?php echo $thisMap->border_radius ?>px;position:relative !important; "></div>
 							<input type="hidden" id="circlemarkeraddress" />
 						</div>
+						<div class="map_database_actions_section">
+							<div class="button copy_map_button" data-map-id="<?=$thisMap->id; ?>">Create Copy Of This Map</div>
+							<div class="button extract_to_csv_button" data-map-id="<?=$thisMap->id; ?>">Export This Map To CSV</div>
+							<span class="pro_desc"><a href="http://huge-it.com/google-map" target="_blank">Go Pro</a>&#32;&#32;&#32; to enable these functionalities</span>
+						</div>
 						<div class="shortcode_containers">
 							<div class="shortcode_container">
 								<div class="shortcode_heading">Shortcode</div>
