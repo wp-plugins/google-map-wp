@@ -524,7 +524,7 @@ function maps_js($id)
 										var x = li.index();
 										if(type=="circle")
 										{
-										
+												console.log("id="+id+",table="+table+",li="+li+",x="+x);
 												circle[x].setMap(null);
 												deleteItem(id,table,li,x);
 										}
@@ -548,9 +548,10 @@ function maps_js($id)
 								}
 								
 								jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>", delete_data, function(response){
-									if(response.success)
-									{
+									if(response.success){
 										li.remove();
+									}else{
+										console.log(response.error);
 									}
 								},"json")
 							}
