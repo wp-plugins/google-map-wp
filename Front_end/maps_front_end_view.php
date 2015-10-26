@@ -9,9 +9,10 @@
 		{
 			foreach($getMapContent as $map)
 			{
+				$i=rand(1,1000000);
 				?>
-					<div id="huge_it_google_map<?php echo $map->id; ?>_container">
-						<div id="huge_it_google_map<?php echo $map->id; ?>" style="position:relative !important;height:<?php echo $map->height; ?>px; width:<?php echo $map->width; ?>%;
+					<div id="huge_it_google_map<?php echo $i; ?>_container">
+						<div id="huge_it_google_map<?php echo $i; ?>" style="position:relative !important;height:<?php echo $map->height; ?>px; width:<?php echo $map->width; ?>%;
 						border-radius:<?php echo $map->border_radius; ?>px !important; 
 						<?php if($map->align == 'left')
 							{?>
@@ -37,7 +38,7 @@
 						</div>
 					</div>
 						<style>
-							#huge_it_google_map<?php echo $map->id; ?> img {
+							#huge_it_google_map<?php echo $i; ?> img {
 								max-width: none;
 								
 							}
@@ -55,8 +56,8 @@
 							var infowindow = [];
 							var newcirclemarker=[];
 							var circlepoint;
-							var width = jQuery("#huge_it_google_map<?php echo $map->id; ?>").width();
-							var height = jQuery("#huge_it_google_map<?php echo $map->id; ?>").height();
+							var width = jQuery("#huge_it_google_map<?php echo $i; ?>").width();
+							var height = jQuery("#huge_it_google_map<?php echo $i; ?>").height();
 							function bindInfoWindow(marker, map, infowindow, description, info_type){
 								google.maps.event.addListener(marker, 'click', function() {
 									infowindow.setContent(description);
@@ -65,7 +66,7 @@
 							}
 							jQuery(document).on("click tap drag scroll",function(e){
 								if(window.matchMedia('(max-width:768px)').matches){
-									var container = jQuery("#huge_it_google_map<?php echo $map->id; ?>");
+									var container = jQuery("#huge_it_google_map<?php echo $i; ?>");
 									if (!container.is(e.target) && container.has(e.target).length === 0){
 										front_end_map.setOptions({
 											draggable:false,
@@ -82,10 +83,10 @@
 							})
 							var div = parseInt(width)/parseInt(height);
 							jQuery(window).on("resize",function(){
-								var newwidth = jQuery("#huge_it_google_map<?php echo $map->id; ?>").width();
+								var newwidth = jQuery("#huge_it_google_map<?php echo $i; ?>").width();
 								var newheight = parseInt(newwidth)/parseInt(div)+"px";
-								jQuery("#huge_it_google_map<?php echo $map->id; ?>").height(newheight);
-								console.log(jQuery("#huge_it_google_map<?php echo $map->id; ?>").height());
+								jQuery("#huge_it_google_map<?php echo $i; ?>").height(newheight);
+								console.log(jQuery("#huge_it_google_map<?php echo $i; ?>").height());
 							})
 							
 							var center_lat = <?php echo $map->center_lat; ?>;
@@ -105,7 +106,7 @@
 								minZoom:<?php echo $map->min_zoom; ?>,
 								maxZoom:<?php echo $map->max_zoom; ?>
 							}
-							var front_end_map = new google.maps.Map(document.getElementById('huge_it_google_map<?php echo $map->id; ?>'),frontEndMapOptions)
+							var front_end_map = new google.maps.Map(document.getElementById('huge_it_google_map<?php echo $i; ?>'),frontEndMapOptions)
 							
 							if(window.matchMedia('(max-width:768px)').matches){
 								front_end_map.setOptions({
