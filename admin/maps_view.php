@@ -6,8 +6,8 @@ function show_map()
 	?>
 		<div class="slider-options-head">
 			<div style="float: left;">
-				<div><a href="http://huge-it.com/wordpress-plugins-google-maps-user-manual/" target="_blank">User Manual</a></div>
-				<div>This section allows you to configure the map options. <a href="http://huge-it.com/wordpress-plugins-google-maps-user-manual/" target="_blank">More...</a></div>
+				<div><a href="http://huge-it.com/wordpress-google-map-user-manual/" target="_blank">User Manual</a></div>
+				<div>This section allows you to configure the map options. <a href="http://huge-it.com/wordpress-google-map-user-manual/" target="_blank">More...</a></div>
 			</div>
 			<div style="float: right;">
 				<a class="header-logo-text" href="http://huge-it.com/google-maps" target="_blank">
@@ -69,8 +69,8 @@ function edit_map()
 	?>
 	<div class="slider-options-head">
 		<div style="float: left;">
-			<div><a href="http://huge-it.com/wordpress-plugins-google-maps-user-manual/" target="_blank">User Manual</a></div>
-			<div>This section allows you to configure the map options. <a href="http://huge-it.com/wordpress-plugins-google-maps-user-manual/" target="_blank">More...</a></div>
+			<div><a href="http://huge-it.com/wordpress-google-map-user-manual/" target="_blank">User Manual</a></div>
+			<div>This section allows you to configure the map options. <a href="http://huge-it.com/wordpress-google-map-user-manual/" target="_blank">More...</a></div>
 		</div>
 		<div style="float: right;">
 			<a class="header-logo-text" href="http://huge-it.com/google-maps" target="_blank">

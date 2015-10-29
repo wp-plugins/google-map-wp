@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/google-map/
 Tags: google map, google maps, easy map, gmaps, google map plugin, map, maps, map plugin, map directions, map markers, map widget, maps, marker, polygons, polylines, google maps v3, google map short code, post map, wp maps, wp google maps, wp google map,roads, path,street, streetview, store locator, routes, longitude, location, latitude, google map widget, directions, address, geocoder, grouping, panoramio, pin, place, point, geo-mashup, geo, georss, cross-browser, gpx, openstreetmap, shape, cluster, latitude, bing maps, google earth, googlemaps, kml, best google maps, best maps, custom google map, custom google maps, google map shortcode, location by address, map short code, map styles, gps, gprs, maps google, post, posts,
 Requires at least: 3.0.1
 Tested up to: 4.3.1
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,8 +16,8 @@ Huge-IT Google Map. One more perfect tool from Huge-IT. Improved Google Maps, wh
 
 * [Wordpress Google Maps](http://huge-it.com/google-map/)
 * [Demo Google Maps](http://huge-it.com/wordpress-plugins-google-map-layers/)
-* [Demo Google Maps](http://huge-it.com/wordpress-plugins-google-map-view-admin/)
-* [User Manual Google Maps](http://huge-it.com/wordpress-plugins-google-map-user-manual/)
+* [FAQ Google Maps](http://huge-it.com/wordpress-google-map-faq/)
+* [User Manual Google Maps](http://huge-it.com/wordpress-google-map-user-manual/)
 
 https://www.youtube.com/watch?v=-2z8tDZeaBs
 
@@ -42,11 +42,11 @@ You only need to install the plugin from WordPress, and see all options on admin
 >
 >[Google Map Layers Demo](http://huge-it.com/wordpress-plugins-google-map-layers/)
 >
->[Google Map Markers Demo](http://huge-it.com/wordpress-plugins-google-map-markers/)
+>[Google Map Markers Demo](http://huge-it.com/wordpress-google-map-demo-2-google-map-markers/)
 >
->[Google Map Shapes Demo](http://huge-it.com/demo-3-google-map-shapes/)
+>[Google Map Shapes Demo](http://huge-it.com/wordpress-google-map-demo-3-google-map-shapes/)
 >
->[Demo Google Map Admin](http://huge-it.com/wordpress-plugins-google-map-view-admin/)
+>[FAQ Google Map](http://huge-it.com/wordpress-google-map-faq/)
 
 If you think, that you found a bug in our [WordPress Google Map](http://huge-it.com/google-map/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com).
 
@@ -81,6 +81,9 @@ Now you can set your Image Gallery options, images and use our Google Maps.
 26.  [WordPress Google Maps](http://huge-it.com/google-map/) - Google Maps admin page
 
 == Changelog ==
+
+= 2.3.3 =
+*  Mirror Bug fixed google maps.
 
 = 2.3.2 =
 *  Bug fixed google maps.

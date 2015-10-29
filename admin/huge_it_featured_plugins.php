@@ -229,7 +229,7 @@
 			<p>Video Gallery plugin was created and specifically designed to show your video files in unusual splendid ways. It has 5 good-looking views. Each are made in different taste so that you can choose any of them, according to the style of your website.</p>
 		</div>			  				
 		<div class="button-block">
-			<a href="http://huge-it.com/video-gallery/" target="_blank">View Plugin</a>
+			<a href="http://huge-it.com/wordpress-video-gallery/" target="_blank">View Plugin</a>
 		</div>
 	</div>
 </div>
