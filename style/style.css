@@ -503,6 +503,7 @@ table tbody tr td a:hover, table tbody tr td a:focus, table tbody tr td a:active
 
 .edit_list {
 	display:block;
+	float:left;
 	width:calc(100% - 10px);
 	width:-webkit-calc(100% - 10px);
 	width:-o-calc(100% - 10px);

@@ -140,7 +140,7 @@ function show_map()
 	<div class="maps_list_container">
 		<h2 class="table_heading">
 			Huge-IT Google maps
-			<a class="new_map_create" href="admin.php?page=hugeitgooglemaps_main&task=add_cat">Add New Map</a>
+			<a class="new_map_create" href="admin.php?page=hugeitgooglemap_main&task=add_cat">Add New Map</a>
 		</h2>
 		
 		<table class="maps_table">
@@ -167,10 +167,10 @@ function show_map()
 						?>
 						<tr class="<?php if($i == 1){ echo "has_background"; } ?>">
 							<td><?php echo $map->id; ?></td>
-							<td><a href="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $map->id; ?>"><?php echo esc_html(stripslashes($map->name)); ?></a>
-							<td><a href="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $map->id; ?>">Edit</a></td>
+							<td><a href="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $map->id; ?>"><?php echo esc_html(stripslashes($map->name)); ?></a>
+							<td><a href="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $map->id; ?>">Edit</a></td>
 							<td>[huge_it_maps id="<?php echo $map->id ?>"]</td>
-							<td><a href="admin.php?page=hugeitgooglemaps_main&task=remove_cat&id=<?php echo $map->id; ?>">Delete</a></td>
+							<td><a href="admin.php?page=hugeitgooglemap_main&task=remove_cat&id=<?php echo $map->id; ?>">Delete</a></td>
 						</tr>
 						<?php ; 
 						$c++;
@@ -401,7 +401,7 @@ function edit_map()
 				$updateMap = $wpdb->query($sql);
 				if($updateMap)
 				{
-					header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+					header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 				}
 			}
 			if(isset($_POST['marker_submit']))
@@ -434,7 +434,7 @@ function edit_map()
 					$insertMarker = $wpdb->query($sql);
 					if($insertMarker)
 					{
-						header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+						header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 					}
 				}
 			}
@@ -475,7 +475,7 @@ function edit_map()
 				$updateMarker = $wpdb->query($sql);
 				if($updateMarker)
 				{
-					header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+					header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 				}
 			}
 			if(isset($_POST['polygone_submit']))
@@ -500,7 +500,7 @@ function edit_map()
 					$insertPolygone = $wpdb->query($sql);
 					if($insertPolygone)
 					{
-						header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+						header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 					}
 				}
 			}
@@ -526,7 +526,7 @@ function edit_map()
 				if($updatePolygone)
 				{
 					
-					header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+					header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 				}
 				else{
 					echo "nope";
@@ -548,7 +548,7 @@ function edit_map()
 				$insertPolyline = $wpdb->query($sql);
 				if($insertPolyline)
 				{
-					header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+					header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 				}
 			}
 			if(isset($_POST['polyline_edit_submit']))
@@ -566,7 +566,7 @@ function edit_map()
 				$updatePolyline = $wpdb->query($sql);
 				if($updatePolyline)
 				{
-					header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+					header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 				}
 			}
 			if(isset($_POST['circle_submit']))
@@ -593,7 +593,7 @@ function edit_map()
 				$insertCircle = $wpdb->query($sql);
 				if($insertCircle)
 				{
-					header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+					header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 				}
 			}
 			if(isset($_POST['circle_edit_submit']))
@@ -618,7 +618,7 @@ function edit_map()
 				$updateCircle = $wpdb->query($sql);
 				if($updateCircle)
 				{
-					header('Location:admin.php?page=hugeitgooglemaps_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
+					header('Location:admin.php?page=hugeitgooglemap_main&id='.$_GET['id'] .'&task=edit_cat&cat_edited=true');
 				}
 				else
 				{
@@ -656,7 +656,7 @@ function edit_map()
 					}
 				}
 			?>
-			<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post" name="adminform" id="adminform">
+			<form action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post" name="adminform" id="adminform">
 				<input type="hidden" name="map_id" id="map_id" value="<?php echo $_GET['id']; ?>" />
 				<div class="map_heading">
 					<ul class="maps_list">
@@ -685,7 +685,7 @@ function edit_map()
 									{ 
 									?>
 										<li>
-											<a href="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $mapname->id; ?>"><?php echo $mapname->name ?></a>
+											<a href="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $mapname->id; ?>"><?php echo $mapname->name ?></a>
 										</li>
 									<?php ;
 									}
@@ -694,7 +694,7 @@ function edit_map()
 							$id=$_GET['id'];
 							?>
 							<li>
-								<a class="new_map_button" href="admin.php?page=hugeitgooglemaps_main&task=add_cat">+</a>
+								<a class="new_map_button" href="admin.php?page=hugeitgooglemap_main&task=add_cat">+</a>
 							</li>
 					</ul>
 				</div>
@@ -721,7 +721,7 @@ function edit_map()
 									<span class="heading_arrow">▼</span>
 								</div>
 								<div class="edit_content map_options hide">
-									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+									<form action ="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 										<ul>
 											<li class="has_background">
 												<label for="map_name">Map Name</label>
@@ -978,7 +978,7 @@ function edit_map()
 									<span class="heading_arrow">▼</span>
 								</div>
 								<div class="edit_content hide" id="g_map_marker_options">
-									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+									<form action ="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 										<a class="add_button" id="marker_add_button" href="#">+Add New Marker</a>
 										<div class="hidden_edit_content hide">
 											<a href="#" id="back_marker" class="cancel left">◄ Back</a>
@@ -1254,7 +1254,7 @@ function edit_map()
 																		<?php if(!empty($marker->title)){ echo $marker->title; }else{ echo "-"; } ?>
 																	</div>
 																	<div class="edit_marker_list_delete edit_list_delete">
-																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
+																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
 																			<input type="submit" class="button edit_list_delete_submit" name="edit_list_delete_submit" value="x" />
 																			<input type="hidden" class="edit_list_delete_type" name="edit_list_delete_type" value="marker" />
 																			<input type="hidden" class="edit_list_delete_table" value="g_markers" />
@@ -1280,7 +1280,7 @@ function edit_map()
 											?>
 										
 									</div>
-									<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post" >
+									<form action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post" >
 										<input type="hidden" id="marker_get_id" name="marker_get_id" />
 										
 										<div class="update_list_item hide" >
@@ -1534,7 +1534,7 @@ function edit_map()
 								</div>
 								<div class="edit_content hide">
 									<div id="g_map_polygone_options">
-										<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<form action ="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<a id="polygon_add_button" class="add_button clear" href="#">+Add New Polygon</a>
 											<div class="hidden_edit_content hide">
 												<a href="#" id="back_polygone" class="cancel left">◄ Back</a>
@@ -1648,7 +1648,7 @@ function edit_map()
 																		<?php if(!empty($polygone->name)){ echo $polygone->name; }else{ echo "-"; } ?>
 																	</div>
 																	<div class="edit_polygone_list_delete edit_list_delete">
-																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
+																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
 																			<input type="submit" class="button edit_list_delete_submit" name="edit_list_delete_submit" value="x" />
 																			<input type="hidden" class="edit_list_delete_type" name="edit_list_delete_type" value="polygone" />
 																			<input type="hidden" class="edit_list_delete_table" value="g_polygones" />
@@ -1671,7 +1671,7 @@ function edit_map()
 													}
 												?>
 										</div>
-										<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<form action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<input type="hidden" id="polygone_get_id" name="polygone_get_id" />
 											<div class="update_list_item hide">
 												<a href="#" id="back_edit_polygone" class="cancel left">◄ Back</a>
@@ -1763,7 +1763,7 @@ function edit_map()
 								</div>
 								<div class="edit_content hide">
 									<div id="g_map_polyline_options">
-										<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<form action ="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<a id="polyline_add_button" class="add_button" href="#">+Add New Polyline</a>
 											<div class="hidden_edit_content hide">
 												<a href="#" id="back_polyline" class="cancel left">◄ Back</a>
@@ -1851,7 +1851,7 @@ function edit_map()
 																		<?php if(!empty($polyline->name)){ echo $polyline->name; }else{ echo "-"; } ?>
 																	</div>
 																	<div class="edit_polyline_list_delete edit_list_delete">
-																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
+																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
 																			<input type="submit" class="button edit_list_delete_submit" name="edit_list_delete_submit" value="x" />
 																			<input type="hidden" class="edit_list_delete_type" name="edit_list_delete_type" value="polyline" />
 																			<input type="hidden" class="edit_list_delete_table" value="g_polylines" />
@@ -1876,7 +1876,7 @@ function edit_map()
 													}
 												?>
 										</div>	
-										<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<form action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<input type="hidden" id="polyline_get_id" name="polyline_get_id" />
 											<div class="update_list_item hide">
 												<a href="#" id="back_edit_polyline" class="cancel left">◄ Back</a>
@@ -1942,7 +1942,7 @@ function edit_map()
 								</div>
 								<div class="edit_content hide">
 									<div id="g_map_circle_options">
-										<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<form action ="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<a id="circle_add_button" class="add_button" href="#">+Add New Circles</a>
 											<div class="hidden_edit_content hide">
 												<a href="#" id="back_circle" class="cancel left">◄ Back</a>
@@ -2071,7 +2071,7 @@ function edit_map()
 																		<?php if(!empty($circle->name)){ echo $circle->name; }else{ echo "-"; } ?>
 																	</div>
 																	<div class="edit_circle_list_delete edit_list_delete">
-																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
+																		<form class="edit_list_delete_form" method="post" action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>">
 																			<input type="submit" class="button edit_list_delete_submit" name="edit_list_delete_submit" value="x" />
 																			<input type="hidden" class="edit_list_delete_type" name="edit_list_delete_type" value="circle" />
 																			<input type="hidden" class="edit_list_delete_table" value="g_circles" />
@@ -2095,7 +2095,7 @@ function edit_map()
 													}
 												?>
 										</div>	
-										<form action="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+										<form action="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 											<input type="hidden" id="circle_get_id" name="circle_get_id" />
 											<div class="update_list_item hide">
 												<a href="#" id="back_edit_circle" class="cancel left">◄ Back</a>
@@ -2200,7 +2200,7 @@ function edit_map()
 									<span class="heading_arrow">▼</span>
 								</div>
 								<div class="edit_content map_options hide">
-									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+									<form action ="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 										<ul>
 											<li class="has_background pro">
 												<label for="traffic_layer_enable">Enable Traffic Layer 
@@ -2226,13 +2226,13 @@ function edit_map()
 									<div class="help">?
 										<div class="help-block">
 											<span class="pnt"></span>
-											<p>Choose some color/tone for the current  map</p>
+											<p>Choose some color/tone for the current map</p>
 										</div>
 									</div>
 									<span class="heading_arrow">▼</span>
 								</div>
 								<div class="edit_content map_options hide">
-									<form action ="admin.php?page=hugeitgooglemaps_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
+									<form action ="admin.php?page=hugeitgooglemap_main&task=edit_cat&id=<?php echo $_GET['id']; ?>" method="post">
 										<ul>
 											<li class="has_background pro">
 												<label for="g_map_styling_hue">Hue(color)</label>

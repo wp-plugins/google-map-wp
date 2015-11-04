@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Google Map
 Plugin URI: http://huge-it.com/google-map
 Description: This easy to use Google Map plugin gives you opportunity to show anything on the map with fantastic tools of Google Maps.
-Version: 2.3.4
+Version: 2.3.5
 Author: Huge-IT
 Author URI: http://huge-it.com
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -241,12 +241,12 @@ add_action('admin_menu', 'hugeitgooglemaps_options_panel');
  
  function hugeitgooglemaps_options_panel()
 {
-    $page_cat = add_menu_page('Theme page title', 'Google Maps', 'manage_options', 'hugeitgooglemaps_main', 'hugeitgooglemaps_main', plugins_url('images/google-maps-20-x-20.png', __FILE__));
-	//$page_option = add_submenu_page('hugeitgooglemaps_main', 'General Options', 'General Options', 'manage_options', 'Option_hugeitgooglemaps', 'Option_hugeitgooglemaps');
+    $page_cat = add_menu_page('Theme page title', 'Google Map', 'manage_options', 'hugeitgooglemap_main', 'hugeitgooglemap_main', plugins_url('images/google-maps-20-x-20.png', __FILE__));
+	//$page_option = add_submenu_page('hugeitgooglemap_main', 'General Options', 'General Options', 'manage_options', 'Option_hugeitgooglemaps', 'Option_hugeitgooglemaps');
 	
-	add_submenu_page('hugeitgooglemaps_main', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__google_map_plugins', 'huge_it__google_map_featured_plugins');
-	add_submenu_page('hugeitgooglemaps_main', 'Licensing', 'Licensing', 'manage_options', 'huge_it_google_maps_Licensing', 'huge_it_google_maps_Licensing');
-	add_action('admin_print_styles-' . $page_cat, 'hugeitgooglemaps_admin_script');
+	add_submenu_page('hugeitgooglemap_main', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'huge_it__google_map_plugins', 'huge_it__google_map_featured_plugins');
+	add_submenu_page('hugeitgooglemap_main', 'Licensing', 'Licensing', 'manage_options', 'huge_it_google_maps_Licensing', 'huge_it_google_maps_Licensing');
+	add_action('admin_print_styles-' . $page_cat, 'hugeitgooglemap_admin_script');
 	//add_action('wp_head','wp_admin_head');
 }
 
@@ -278,7 +278,7 @@ function huge_it__google_map_featured_plugins()
 	include_once("admin/huge_it_featured_plugins.php");
 }
 
-function hugeitgooglemaps_admin_script()
+function hugeitgooglemap_admin_script()
 { 	
 	wp_enqueue_media();
 	wp_enqueue_script('media-upload');
@@ -298,7 +298,7 @@ function hugeitgooglemaps_option_admin_script()
 	
 <?php ; }
 
-function hugeitgooglemaps_main()
+function hugeitgooglemap_main()
 { 
 	require_once("admin/maps_func.php");
 	require_once("admin/maps_view.php");
